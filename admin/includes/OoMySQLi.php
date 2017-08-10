@@ -20,12 +20,12 @@ class OoMySQLi {
 		$this->handler = new mysqli($host, $user, $password, $name, $port, $socket);
 
 		if ($this->handler->connect_errno) {
-			$this->log->write("[MySQLi_Connection] " . $this->handler->connect_error);
+			$this->log->write("DB", $this->handler->connect_error);
 			return false;
 		}
 
 		if (!$this->handler->set_charset("utf8")) {
-			$this->log->write("[MySQLi_Connection] " . $this->handler->error);
+			$this->log->write("DB", $this->handler->error);
 			return false;
 		}
 
@@ -36,8 +36,7 @@ class OoMySQLi {
 		$result = $this->handler->query($query);
 
 		if (!$result) {
-			$this->log->write("[MySQLi Query] " . $this->mysqli->error);
-			exit("[MySQLi Query] Error!");
+			$this->log->write("DB", $this->mysqli->error);
 		}
 
 		return $result;

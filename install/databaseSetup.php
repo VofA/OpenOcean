@@ -13,19 +13,19 @@ $db = new OoMySQLi();
 $result = $db->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
 
 if ($result) {
-	//$db->execute('CREATE DATABASE ' + $_POST["name"]);
+	$config = new OoConfigEditor();
+	$config->load();
 
-	$q = new OoConfigEditor();
-	$q->load();
+	$config->change('DB_HOST', $_POST["host"]);
+	$config->change('DB_USERNAME', $_POST["username"]);
+	$config->change('DB_PASSWORD', $_POST["password"]);
+	$config->change('DB_NAME', $_POST["name"]);
+	$config->change('DB_PORT', $_POST["port"]);
+	$config->change('DB_SOCKET', $_POST["socket"]);
 
-	$q->change('DB_HOST', $_POST["host"]);
-	$q->change('DB_USERNAME', $_POST["username"]);
-	$q->change('DB_PASSWORD', $_POST["password"]);
-	$q->change('DB_NAME', $_POST["name"]);
-	$q->change('DB_PORT', $_POST["port"]);
-	$q->change('DB_SOCKET', $_POST["socket"]);
+	$config->save();
 
-	$q->save();
+	// $db->execute("");
 }
 
 echo($result);

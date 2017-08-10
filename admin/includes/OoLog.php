@@ -7,8 +7,19 @@
  */
 
 class OoLog {
-	function write($text) {
-		file_put_contents(__DIR__ . "/../log.txt", "[" . date("H:i:s d.m.Y") . "] : " . $string . "\n", FILE_APPEND);
+	private $logType;
+
+	function __construct() {
+		$this->logType = array(
+			'DB' => 'database.log'
+			);
+	}
+
+	function write($type, $text) {
+		$_file = __DIR__ . "/../logs/" . $this->logType[$type];
+		$_date = "[" . date('H:i:s d.m.Y') . "]";
+
+		file_put_contents($_file, "$_date $text\n", FILE_APPEND);
 	}
 }
 ?>
