@@ -6,33 +6,41 @@
  * @copyright 2017 Danil Dumkin
  */
 
+require_once(__DIR__ . "/OoLog.php");
+
 class OoMySQLi {
 	private $handler;
+	private $log;
+
+	function __construct() {
+		$this->log = new OoLog();
+	}
 
 	function connect($host = null, $user = null, $password = null, $name = null, $port = null, $socket = null) : bool {
 		$this->handler = new mysqli($host, $user, $password, $name, $port, $socket);
-		// $this->handler = new mysqli("localhost", "root");
+
 		if ($this->handler->connect_errno) {
-			//LogWrite("[MySQLi_Connection] " . $this->handler->connect_error);
-			//exit("[MySQLi] Не удалось подключится к базе данных.");
+			$this->log->write("[MySQLi_Connection] " . $this->handler->connect_error);
 			return false;
 		}
+
 		if (!$this->handler->set_charset("utf8")) {
-			//LogWrite("[MySQLi_Connection] " . $this->handler->error);
-			//exit("[MySQLi] Не удалось выбрать кодировку.");
+			$this->log->write("[MySQLi_Connection] " . $this->handler->error);
 			return false;
 		}
+
 		return true;
 	}
 
 	function execute($query) {
-		$ret = $this->handler->query($query);
+		$result = $this->handler->query($query);
 
-		if (!$ret) {
-			//LogWrite("[MySQLi Query] " . $this->mysqli->error);
+		if (!$result) {
+			$this->log->write("[MySQLi Query] " . $this->mysqli->error);
 			exit("[MySQLi Query] Error!");
 		}
-		return $ret;
+
+		return $result;
 	}
 
 	function fetch_assoc($query) {
