@@ -1,10 +1,10 @@
 <?php
 
 /**
- * OoLog class
- *
- * @copyright 2017 Danil Dumkin
- */
+* OoLog class
+*
+* @copyright 2017 Danil Dumkin
+*/
 
 class OoLog {
 	private $logType;
@@ -12,7 +12,7 @@ class OoLog {
 	function __construct() {
 		$this->logType = array(
 			'DB' => 'database.log'
-			);
+		);
 	}
 
 	function write($type, $text) {

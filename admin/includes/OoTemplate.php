@@ -1,10 +1,10 @@
 <?php
 
 /**
- * OoTemplate class
- *
- * @copyright 2017 Danil Dumkin
- */
+* OoTemplate class
+*
+* @copyright 2017 Danil Dumkin
+*/
 
 class OoTemplate {
 	private $content = "";

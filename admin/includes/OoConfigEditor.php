@@ -1,10 +1,10 @@
 <?php
 
 /**
- * OoConfigEditor class
- *
- * @copyright 2017 Danil Dumkin
- */
+* OoConfigEditor class
+*
+* @copyright 2017 Danil Dumkin
+*/
 
 class OoConfigEditor {
 	private $config = "";
