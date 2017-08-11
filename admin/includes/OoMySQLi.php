@@ -17,7 +17,7 @@ class OoMySQLi {
 	}
 
 	function connect($host = null, $user = null, $password = null, $name = null, $port = null, $socket = null) : bool {
-		$this->handler = new mysqli($host, $user, $password, $name, $port, $socket);
+		$this->handler = @new mysqli($host, $user, $password, $name, $port, $socket);
 
 		if ($this->handler->connect_errno) {
 			$this->log->write("DB", $this->handler->connect_error);

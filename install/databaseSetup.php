@@ -29,6 +29,7 @@ if ($connectResult) {
 
 }
 
-echo($connectResult);
+echo $connectResult ? 'true' : 'false';
+
 
 ?>

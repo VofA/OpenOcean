@@ -87,7 +87,11 @@
 				url: "databaseSetup.php",
 				data: $("#sd-f").serialize(),
 				success: function(data) {
-					console.log(data);
+					if (data == "true") {
+						$('.collapsible').collapsible('open', 2);
+					} else {
+						alert("try");
+					}
 				}
 			})
 		});
