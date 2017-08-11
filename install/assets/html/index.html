@@ -72,6 +72,8 @@
 		// Select language
 		var languagesAvailable = JSON.parse('{languagesAvailableJson}');
 
+		languageLoad('languages/{languagesDefault}.json');
+
 		$("#ls-n").click(function(e) {
 			var languageSelected = $('#ls-s>option:selected').text();
 			languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
