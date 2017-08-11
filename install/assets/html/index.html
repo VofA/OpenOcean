@@ -20,17 +20,17 @@
 			<li>
 				<div class="collapsible-header"><i class="material-icons">view_headline</i><div id="sd-t">Database setup</div></div>
 				<div class="collapsible-body">
-					<form>
+					<form id="sd-f">
 						<div class="input-field">
-							<input id="prefix" type="text" name="prefix">
+							<input id="prefix" type="text" name="prefix" value="oo_">
 							<label id="sd-pf" for="prefix"></label>
 						</div>
 						<div class="input-field">
-							<input id="host" type="text" name="host">
+							<input id="host" type="text" name="host" value="127.0.0.1">
 							<label id="sd-h" for="host"></label>
 						</div>
 						<div class="input-field">
-							<input id="username" type="text" name="username">
+							<input id="username" type="text" name="username" value="root">
 							<label id="sd-un" for="username"></label>
 						</div>
 						<div class="input-field">
@@ -85,13 +85,9 @@
 			$.ajax({
 				type: "POST",
 				url: "databaseSetup.php",
-				data: $("#sd-t>form").serialize(),
+				data: $("#sd-f").serialize(),
 				success: function(data) {
-					if (data == 1) {
-						$('.collapsible').collapsible('open', 2);
-					} else {
-						alert("no");
-					}
+					console.log(data);
 				}
 			})
 		});

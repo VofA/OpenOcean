@@ -10,9 +10,9 @@ foreach ($_POST as $key => $value) {
 }
 
 $db = new OoMySQLi();
-$result = $db->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
+$connectResult = $db->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
 
-if ($result) {
+if ($connectResult) {
 	$config = new OoConfigEditor();
 	$config->load();
 
@@ -26,8 +26,9 @@ if ($result) {
 	$config->save();
 
 	// $db->execute("");
+
 }
 
-echo($result);
+echo($connectResult);
 
 ?>
