@@ -1,1 +1,13 @@
-{"f-ls-b":"Select","f-sd-su":"Submit"}
+{
+	"ls-t":"Language select",
+	"ls-n":"Next",
+	"sd-t":"Database setup",
+	"sd-pf":"Table prefix",
+	"sd-h":"Database host",
+	"sd-un":"Username",
+	"sd-nm":"Database name",
+	"sd-pw":"Password",
+	"sd-n":"Next",
+	"sd-p":"Port",
+	"sd-s":"Socket"
+}

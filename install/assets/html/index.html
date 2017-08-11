@@ -1,53 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>OpenOcean</title>
+	<link rel="stylesheet" href="../admin/assets/css/materialize.min.css">
+	<link rel="stylesheet" href="assets/css/common.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
 </head>
 <body>
+	<div class="container">
+		<ul class="collapsible popout" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header active"><i class="material-icons">language</i><div id="ls-t">Language select</div></div>
+				<div class="collapsible-body">
+					<select id="ls-s">{languageSelect}</select>
+					<a id="ls-n" class="waves-effect waves-light btn">Next</a>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">view_headline</i><div id="sd-t">Database setup</div></div>
+				<div class="collapsible-body">
+					<form>
+						<div class="input-field">
+							<input id="prefix" type="text" name="prefix">
+							<label id="sd-pf" for="prefix"></label>
+						</div>
+						<div class="input-field">
+							<input id="host" type="text" name="host">
+							<label id="sd-h" for="host"></label>
+						</div>
+						<div class="input-field">
+							<input id="username" type="text" name="username">
+							<label id="sd-un" for="username"></label>
+						</div>
+						<div class="input-field">
+							<input id="password" type="text" name="password">
+							<label id="sd-pw" for="password"></label>
+						</div>
+						<div class="input-field">
+							<input id="name" type="text" name="name">
+							<label id="sd-nm" for="name"></label>
+						</div>
+						<div class="input-field">
+							<input id="port" type="text" name="port">
+							<label id="sd-p" for="port"></label>
+						</div>
+						<div class="input-field">
+							<input id="socket" type="text" name="socket">
+							<label id="sd-s" for="socket"></label>
+						</div>
+						<a id="sd-n" class="waves-effect waves-light btn"></a>
+					</form>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+				<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+			</li>
+		</ul>
+	</div>
 
-	<select id="f-ls-s" name="language">{languageSelect}</select>
-	<input id="f-ls-b" type="button" value="Select">
-
-	<form id="f-sd">
-		<input id="f-sd-pr" type="text" name="prefix" placeholder="prefix">
-		<input id="f-sd-h" type="text" name="host" placeholder="host">
-		<input id="f-sd-un" type="text" name="username" placeholder="username">
-		<input id="f-sd-pw" type="text" name="password" placeholder="password">
-		<input id="f-sd-n" type="text" name="name" placeholder="name">
-		<input id="f-sd-po" type="text" name="port" placeholder="port">
-		<input id="f-sd-so" type="text" name="socket" placeholder="socket">
-		<input id="f-sd-su" type="button" value="Submit">
-		<div id="f-sd-r"></div>
-	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../admin/assets/js/materialize.min.js"></script>
+	<script src="../admin/assets/js/common.js"></script>
 
 	<script>
+	$(document).ready(function() {
+		$('select').material_select();
+		$('.collapsible').unbind('click');
+
 		// Select language
 		var languagesAvailable = JSON.parse('{languagesAvailableJson}');
 
-		$("#f-ls-b").click(function(e) {
-			var languageSelected = $('#f-ls-s>option:selected').text();
-
-			$.get('languages/' + languagesAvailable[languageSelected] + '.json', function( data ) {
-				for (var key in data) {
-					$('#' + key).val(data[key]);
-				}
-			});
+		$("#ls-n").click(function(e) {
+			var languageSelected = $('#ls-s>option:selected').text();
+			languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
+			$('.collapsible').collapsible('open', 1);
 		});
 
 		// Setup database
-		$("#f-sd-su").click(function() {
+		$("#sd-n").click(function() {
 			$.ajax({
 				type: "POST",
 				url: "databaseSetup.php",
-				data: $("#f-sd").serialize(),
+				data: $("#sd-t>form").serialize(),
 				success: function(data) {
-					$('#f-sd-r').text(data);
+					if (data == 1) {
+						$('.collapsible').collapsible('open', 2);
+					} else {
+						alert("no");
+					}
 				}
 			})
 		});
+	});
 	</script>
-
 </body>
 </html>

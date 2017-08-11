@@ -7,7 +7,7 @@ $languagesAvailable = (array) json_decode($languagesAvailableJson);
 
 $languageSelect = "";
 foreach ($languagesAvailable as $key => $value) {
-	$languageSelect .= "<option value='$key'>$key</option>";
+	$languageSelect .= "<option>$key</option>";
 }
 
 $templateData = array(
