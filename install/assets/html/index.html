@@ -38,8 +38,11 @@
 							<label id="sd-pw" for="password"></label>
 						</div>
 						<div class="input-field">
-							<input id="name" type="text" name="name">
+							<input id="name" type="text" name="name" required>
 							<label id="sd-nm" for="name"></label>
+						</div>
+						<div class="switch">
+							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s">Создать базу данных при её отсутствии</div></label>
 						</div>
 						<div class="input-field">
 							<input id="port" type="text" name="port">
@@ -82,18 +85,25 @@
 
 		// Setup database
 		$("#sd-n").click(function() {
-			$.ajax({
-				type: "POST",
-				url: "databaseSetup.php",
-				data: $("#sd-f").serialize(),
-				success: function(data) {
-					if (data == "true") {
-						$('.collapsible').collapsible('open', 2);
-					} else {
-						alert("try");
-					}
+			$("#sd-f input:required").toArray().forEach(function(item) {
+				if ($(item).val() === '') {
+					$(item).addClass("invalid");
+					return;
 				}
-			})
+
+				$.ajax({
+					type: "POST",
+					url: "databaseSetup.php",
+					data: $("#sd-f").serialize(),
+					success: function(data) {
+						if (data == "true") {
+							$('.collapsible').collapsible('open', 2);
+						} else {
+							alert("try");
+						}
+					}
+				})
+			});
 		});
 	});
 	</script>

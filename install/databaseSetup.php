@@ -9,8 +9,16 @@ foreach ($_POST as $key => $value) {
 	}
 }
 
-$db = new OoMySQLi();
-$connectResult = $db->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
+$sql = new OoMySQLi();
+$config = new OoConfigEditor();
+
+if (isset($_POST["create"])) {
+	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $_POST["port"], $_POST["socket"]);
+
+	$sql->databaseCreate($_POST["name"]);
+} else {
+	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
+}
 
 if ($connectResult) {
 	$config = new OoConfigEditor();
@@ -25,11 +33,9 @@ if ($connectResult) {
 
 	$config->save();
 
-	// $db->execute("");
-
+	// $sql->execute("");
 }
 
 echo $connectResult ? 'true' : 'false';
-
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * OoMySQLi class
- *
- * @copyright 2017 Danil Dumkin
- */
+* OoMySQLi class
+*
+* @copyright 2017 Danil Dumkin
+*/
 
 require_once(__DIR__ . "/OoLog.php");
 
@@ -33,10 +33,12 @@ class OoMySQLi {
 	}
 
 	function execute($query) {
+		$query = $this->safe($query);
+
 		$result = $this->handler->query($query);
 
 		if (!$result) {
-			$this->log->write("DB", $this->mysqli->error);
+			$this->log->write("DB", $this->handler->error);
 		}
 
 		return $result;
@@ -48,6 +50,24 @@ class OoMySQLi {
 
 	function fetch_array($query) {
 		return $query->fetch_array();
+	}
+
+	function databaseSelect($name) {
+		return $this->handler->select_db($name);
+	}
+
+	function databaseCreate($name) {
+		return $this->execute('CREATE DATABASE ' . $name . ';');
+	}
+
+	function databaseCheck($name) {
+		$result = $this->databaseSelect($name);
+		if (!$result) {
+			$this->log->write("DB", $this->handler->error);
+			return false;
+		}
+
+		return true;
 	}
 
 	function safe($string) {

@@ -1,3 +1,9 @@
 .collapsible-header {
 	cursor: default;
 }
+.switch label .lever {
+	margin: 0 10px 0 0;
+}
+.switch label div {
+	display: inline-block;
+}
