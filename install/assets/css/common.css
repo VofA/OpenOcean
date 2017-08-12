@@ -53,7 +53,10 @@ body {
 	height: 100%;
 	opacity: 0;
 	color: #FFF;
-	padding: 88px;
+	padding: 76px;
+}
+.avatar .after i {
+	font-size: 48px;
 }
 .avatar:hover .after {
 	transition: all .25s;
