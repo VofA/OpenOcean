@@ -15,11 +15,11 @@ $sql = new OoMySQLi();
 $config = new OoConfigEditor();
 
 if (isset($_POST["create"])) {
-	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $port, $_POST["socket"]);
+	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $port);
 
 	$sql->databaseCreate($_POST["name"]);
 } else {
-	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $port, $_POST["socket"]);
+	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $port);
 }
 
 if ($connectResult) {
@@ -31,7 +31,6 @@ if ($connectResult) {
 	$config->change('DB_PASSWORD', $_POST["password"]);
 	$config->change('DB_NAME', $_POST["name"]);
 	$config->change('DB_PORT', $port);
-	$config->change('DB_SOCKET', $_POST["socket"]);
 
 	$config->save();
 
