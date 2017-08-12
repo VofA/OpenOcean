@@ -13,3 +13,6 @@
 .hidden {
 	display: none;
 }
+ul.collapsible {
+	margin-top: 16px;
+}
