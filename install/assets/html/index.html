@@ -11,10 +11,27 @@
 	<div class="container">
 		<ul class="collapsible popout" data-collapsible="accordion">
 			<li>
-				<div class="collapsible-header active"><i class="material-icons">language</i><div id="ls-t">Language select</div></div>
+				<div class="collapsible-header active"><i class="material-icons">location_searching</i><div id="ald-t">Automatic language detection</div></div>
+				<div class="collapsible-body">
+					<div class="progress">
+						<div class="indeterminate"></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">language</i><div id="ls-t">Language select</div></div>
 				<div class="collapsible-body">
 					<select id="ls-s">{languageSelect}</select>
-					<a id="ls-n" class="waves-effect waves-light btn">Next</a>
+					<div class="row">
+						<div class="col s6">
+							<a id="ls-n" class="waves-effect waves-light btn">Next</a>
+						</div>
+						<div class="col s6 valign-wrapper">
+							<div id="ls-p" class="progress hidden">
+								<div class="indeterminate"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</li>
 			<li>
@@ -52,7 +69,16 @@
 							<input id="socket" type="text" name="socket">
 							<label id="sd-s" for="socket"></label>
 						</div>
-						<a id="sd-n" class="waves-effect waves-light btn"></a>
+						<div class="row">
+							<div class="col s6">
+								<a id="sd-n" class="waves-effect waves-light btn"></a>
+							</div>
+							<div class="col s6 valign-wrapper">
+								<div id="sd-pr" class="progress hidden">
+									<div class="indeterminate"></div>
+								</div>
+							</div>
+						</div>
 					</form>
 				</div>
 			</li>
@@ -69,26 +95,33 @@
 
 	<script>
 	$(document).ready(function() {
-		$('select').material_select();
 		$('.collapsible').unbind('click');
+
+		languageLoad('languages/{languagesDefault}.json');
+		$('.collapsible').collapsible('open', 1);
+
+		$('select').material_select();
 
 		// Select language
 		var languagesAvailable = JSON.parse('{languagesAvailableJson}');
 
-		languageLoad('languages/{languagesDefault}.json');
-
 		$("#ls-n").click(function(e) {
+			$('#ls-p').removeClass('hidden');
+
 			var languageSelected = $('#ls-s>option:selected').text();
 
 			if (languagesAvailable[languageSelected] != '{languagesDefault}') {
 				languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
 			}
 
-			$('.collapsible').collapsible('open', 1);
+			$('#ls-p').addClass('hidden');
+			$('.collapsible').collapsible('open', 2);
 		});
 
 		// Setup database
 		$("#sd-n").click(function() {
+			$('#sd-pr').removeClass('hidden');
+
 			$("#sd-f input:required").toArray().forEach(function(item) {
 				if ($(item).val() === '') {
 					$(item).addClass("invalid");
@@ -101,13 +134,14 @@
 					data: $("#sd-f").serialize(),
 					success: function(data) {
 						if (data == "true") {
-							$('.collapsible').collapsible('open', 2);
+							$('.collapsible').collapsible('open', 3);
 						} else {
 							alert("try");
 						}
 					}
 				})
 			});
+			//$('#sd-pr').addClass('hidden');
 		});
 	});
 	</script>
