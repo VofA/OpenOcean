@@ -11,7 +11,7 @@
 	<div class="container">
 		<ul class="collapsible popout" data-collapsible="accordion">
 			<li>
-				<div class="collapsible-header active"><i class="material-icons">location_searching</i><div class="c-h-title" id="ald-t">Automatic language detection</div></div>
+				<div class="collapsible-header"><i class="material-icons">location_searching</i><div class="c-h-title" id="ald-t">{ald-t}</div></div>
 				<div class="collapsible-body">
 					<div class="progress">
 						<div class="indeterminate"></div>
@@ -19,12 +19,12 @@
 				</div>
 			</li>
 			<li>
-				<div class="collapsible-header"><i class="material-icons">language</i><div class="c-h-title" id="ls-t">Language select</div></div>
+				<div class="collapsible-header"><i class="material-icons">language</i><div class="c-h-title" id="ls-t">{ls-t}</div></div>
 				<div id="ls-b" class="collapsible-body">
 					<select id="ls-s">{languageSelect}</select>
 					<div class="row">
 						<div class="col s6">
-							<a id="ls-n" class="waves-effect waves-light btn">Next</a>
+							<a id="ls-n" class="waves-effect waves-light btn">{ls-n}</a>
 						</div>
 						<div class="col s6 valign-wrapper">
 							<div id="ls-p" class="progress hidden">
@@ -35,43 +35,43 @@
 				</div>
 			</li>
 			<li>
-				<div class="collapsible-header"><i class="material-icons">view_headline</i><div class="c-h-title" id="sd-t">Database setup</div></div>
+				<div class="collapsible-header"><i class="material-icons">view_headline</i><div class="c-h-title" id="sd-t">{sd-t}</div></div>
 				<div class="collapsible-body">
 					<form id="sd-f">
 						<div class="input-field">
 							<input id="prefix" type="text" name="prefix" value="oo_">
-							<label id="sd-pf" for="prefix"></label>
+							<label id="sd-pf" for="prefix">{sd-pf}</label>
 						</div>
 						<div class="input-field">
 							<input id="host" type="text" name="host" value="127.0.0.1">
-							<label id="sd-h" for="host"></label>
+							<label id="sd-h" for="host">{sd-h}</label>
 						</div>
 						<div class="input-field">
 							<input id="username" type="text" name="username" value="root">
-							<label id="sd-un" for="username"></label>
+							<label id="sd-un" for="username">{sd-un}</label>
 						</div>
 						<div class="input-field">
 							<input id="password" type="text" name="password">
-							<label id="sd-pw" for="password"></label>
+							<label id="sd-pw" for="password">{sd-pw}</label>
 						</div>
 						<div class="input-field">
 							<input id="name" type="text" name="name" required>
-							<label id="sd-nm" for="name"></label>
+							<label id="sd-nm" for="name">{sd-nm}</label>
 						</div>
 						<div class="switch">
-							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s">Создать базу данных при её отсутствии</div></label>
+							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s">{sd-nm-s}</div></label>
 						</div>
 						<div class="input-field">
 							<input id="port" type="text" name="port">
-							<label id="sd-p" for="port"></label>
+							<label id="sd-p" for="port">{sd-p}</label>
 						</div>
 						<div class="input-field">
 							<input id="socket" type="text" name="socket">
-							<label id="sd-s" for="socket"></label>
+							<label id="sd-s" for="socket">{sd-s}</label>
 						</div>
 						<div class="row">
 							<div class="col s6">
-								<a id="sd-n" class="waves-effect waves-light btn"></a>
+								<a id="sd-n" class="waves-effect waves-light btn">{sd-n}</a>
 							</div>
 							<div class="col s6 valign-wrapper">
 								<div id="sd-pr" class="progress hidden">
@@ -97,8 +97,8 @@
 	$(document).ready(function() {
 		$('.collapsible').unbind('click');
 
-		languageLoad('languages/{languagesDefault}.json');
-		$('.collapsible').collapsible('open', 1);
+		// languageLoad('languages/{languagesDefault}.json');
+		$('.collapsible').collapsible('open', 2);
 
 		$('select').material_select();
 
