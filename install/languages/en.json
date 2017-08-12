@@ -11,5 +11,6 @@
 	"sd-pw":"Password",
 	"sd-n":"Next",
 	"sd-p":"Port",
+	"sd-p-s":"Use custom port",
 	"sd-s":"Socket"
 }

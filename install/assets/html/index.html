@@ -81,11 +81,14 @@
 							<label id="sd-nm" for="name"></label>
 						</div>
 						<div class="switch">
-							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s">Создать базу данных при её отсутствии</div></label>
+							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s"></div></label>
 						</div>
 						<div class="input-field">
-							<input id="port" type="text" name="port">
+							<input id="port" type="text" name="port" disabled>
 							<label id="sd-p" for="port"></label>
+						</div>
+						<div class="switch">
+							<label><input id="sp-p-cb" type="checkbox" name="portEdit"><span class="lever"></span><div id="sd-p-s"></div></label>
 						</div>
 						<div class="input-field">
 							<input id="socket" type="text" name="socket">
@@ -161,6 +164,14 @@
 
 			$('.collapsible').collapsible('open', 2);
 			stateChange('1', 'done');
+		});
+
+		$('#sp-p-cb').click(function() {
+			if ($('#sp-p-cb').is(':checked')) {
+				$('#port').prop('disabled', false);
+			} else {
+				$('#port').prop('disabled', true);
+			}
 		});
 
 		// Setup database
