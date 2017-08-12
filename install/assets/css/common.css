@@ -25,6 +25,9 @@ body {
 .collapsible-body {
 	background-color: #FFF;
 }
+.collapsible-header, .collapsible-header > .material-icons{
+	line-height: 29px;
+}
 #ls-b {
 	height: 176px;
 }
