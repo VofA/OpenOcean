@@ -35,7 +35,7 @@
 							<a id="ls-n" class="waves-effect waves-light btn">Next</a>
 						</div>
 						<div class="col s6 valign-wrapper">
-							<div id="ls-p" class="progress hidden">
+							<div id="ls-p" class="progress hide">
 								<div class="indeterminate"></div>
 							</div>
 						</div>
@@ -86,7 +86,7 @@
 								<a id="sd-n" class="waves-effect waves-light btn"></a>
 							</div>
 							<div class="col s6 valign-wrapper">
-								<div id="sd-pr" class="progress hidden">
+								<div id="sd-pr" class="progress hide">
 									<div class="indeterminate"></div>
 								</div>
 							</div>
@@ -123,7 +123,7 @@
 		var languagesAvailable = JSON.parse('{languagesAvailableJson}');
 
 		$("#ls-n").click(function(e) {
-			$('#ls-p').removeClass('hidden');
+			$('#ls-p').removeClass('hide');
 
 			var languageSelected = $('#ls-s>option:selected').text();
 
@@ -131,14 +131,14 @@
 				languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
 			}
 
-			$('#ls-p').addClass('hidden');
+			$('#ls-p').addClass('hide');
 			$('.collapsible').collapsible('open', 2);
 			$('#step1 .collapsible-done').removeClass('hide');
 		});
 
 		// Setup database
 		$("#sd-n").click(function() {
-			$('#sd-pr').removeClass('hidden');
+			$('#sd-pr').removeClass('hide');
 
 			$("#sd-f input:required").toArray().forEach(function(item) {
 				if ($(item).val() === '') {
@@ -160,7 +160,7 @@
 					}
 				})
 			});
-			$('#sd-pr').addClass('hidden');
+			$('#sd-pr').addClass('hide');
 		});
 	});
 	</script>
