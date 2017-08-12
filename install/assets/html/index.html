@@ -79,7 +79,11 @@
 
 		$("#ls-n").click(function(e) {
 			var languageSelected = $('#ls-s>option:selected').text();
-			languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
+
+			if (languagesAvailable[languageSelected] != '{languagesDefault}') {
+				languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
+			}
+
 			$('.collapsible').collapsible('open', 1);
 		});
 
