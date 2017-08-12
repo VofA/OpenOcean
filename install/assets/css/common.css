@@ -19,6 +19,7 @@ ul.collapsible {
 }
 body {
 	background-color: #FAFAFA;
+	user-select: none;
 }
 .collapsible-body {
 	background-color: #FFF;
