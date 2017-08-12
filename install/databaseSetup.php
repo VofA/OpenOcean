@@ -9,15 +9,17 @@ foreach ($_POST as $key => $value) {
 	}
 }
 
+$port = $_POST["port"] ?? null;
+
 $sql = new OoMySQLi();
 $config = new OoConfigEditor();
 
 if (isset($_POST["create"])) {
-	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $_POST["port"], $_POST["socket"]);
+	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $port, $_POST["socket"]);
 
 	$sql->databaseCreate($_POST["name"]);
 } else {
-	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
+	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $port, $_POST["socket"]);
 }
 
 if ($connectResult) {
@@ -28,7 +30,7 @@ if ($connectResult) {
 	$config->change('DB_USERNAME', $_POST["username"]);
 	$config->change('DB_PASSWORD', $_POST["password"]);
 	$config->change('DB_NAME', $_POST["name"]);
-	$config->change('DB_PORT', $_POST["port"]);
+	$config->change('DB_PORT', $port);
 	$config->change('DB_SOCKET', $_POST["socket"]);
 
 	$config->save();

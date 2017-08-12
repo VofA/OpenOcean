@@ -160,28 +160,35 @@
 		$("#sd-n").click(function() {
 			stateChange('2', 'load');
 
+			var proceed = true;
+
 			$("#sd-f input:required").toArray().forEach(function(item) {
 				if ($(item).val() === '') {
 					$(item).addClass("invalid");
 					stateChange('2', 'none');
+					proceed = false;
 					return;
 				}
-
-				$.ajax({
-					type: "POST",
-					url: "databaseSetup.php",
-					data: $("#sd-f").serialize(),
-					success: function(data) {
-						if (data == "true") {
-							$('.collapsible').collapsible('open', 3);
-							stateChange('2', 'done');
-						} else {
-							stateChange('2', 'none');
-							alert("try");
-						}
-					}
-				})
 			});
+
+			if (!proceed) {
+				return;
+			}
+
+			$.ajax({
+				type: "POST",
+				url: "databaseSetup.php",
+				data: $("#sd-f").serialize(),
+				success: function(data) {
+					if (data == "true") {
+						$('.collapsible').collapsible('open', 3);
+						stateChange('2', 'done');
+					} else {
+						stateChange('2', 'none');
+						alert("try");
+					}
+				}
+			})
 		});
 	});
 	</script>
