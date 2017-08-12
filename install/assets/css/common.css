@@ -38,6 +38,7 @@ body {
 	margin-bottom: 20px;
 }
 .avatar {
+	margin: 0 auto;
     position: relative;
     width: 200px;
     height: 200px;
