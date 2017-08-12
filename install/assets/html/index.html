@@ -122,9 +122,7 @@
 							<div class="avatar circle">
 								<img src="http://29palms.ru/imagehost/image.php?di=4YUW" alt="Set picture" class="circle" width="200px" height="200px">
 								<div class="after circle waves-effect waves-light">
-									<!-- <a class="btn-floating btn-large waves-effect waves-light"> -->
-										<i class="material-icons">add_a_photo</i>
-									<!-- </a> -->
+									<i class="material-icons">add_a_photo</i>
 								</div>
 							</div>
 						</div>
@@ -141,14 +139,14 @@
 							<label id="aa-e" for="email"></label>
 						</div>
 						<div class="file-field input-field">
-				      <div class="waves-effect waves-light btn">
-				        <span id="aa-u"></span>
-				        <input type="file" name="avatar">
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text">
-				      </div>
-				    </div>
+							<div class="waves-effect waves-light btn">
+								<span id="aa-u"></span>
+								<input type="file" name="avatar">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
 						<a id="aa-n" class="waves-effect waves-light btn"></a>
 					</form>
 				</div>
@@ -211,31 +209,31 @@
 
 		// Setup database
 		$("#sd-n").click(function() {
-		// 	stateChange('2', 'load');
-		//
-		// 	$("#sd-f input:required").toArray().forEach(function(item) {
-		// 		if ($(item).val() === '') {
-		// 			$(item).addClass("invalid");
-		// 			stateChange('2', 'none');
-		// 			return;
-		// 		}
-		//
-		// 		$.ajax({
-		// 			type: "POST",
-		// 			url: "databaseSetup.php",
-		// 			data: $("#sd-f").serialize(),
-		// 			success: function(data) {
-		// 				if (data == "true") {
-		// 					$('.collapsible').collapsible('open', 3);
-		// 					stateChange('2', 'done');
-		// 				} else {
-		// 					stateChange('2', 'none');
-		// 					alert("try");
-		// 				}
-		// 			}
-		// 		})
-		// 	});
-		$('.collapsible').collapsible('open', 3);
+			// 	stateChange('2', 'load');
+			//
+			// 	$("#sd-f input:required").toArray().forEach(function(item) {
+			// 		if ($(item).val() === '') {
+			// 			$(item).addClass("invalid");
+			// 			stateChange('2', 'none');
+			// 			return;
+			// 		}
+			//
+			// 		$.ajax({
+			// 			type: "POST",
+			// 			url: "databaseSetup.php",
+			// 			data: $("#sd-f").serialize(),
+			// 			success: function(data) {
+			// 				if (data == "true") {
+			// 					$('.collapsible').collapsible('open', 3);
+			// 					stateChange('2', 'done');
+			// 				} else {
+			// 					stateChange('2', 'none');
+			// 					alert("try");
+			// 				}
+			// 			}
+			// 		})
+			// 	});
+			$('.collapsible').collapsible('open', 3);
 		});
 	});
 	</script>
