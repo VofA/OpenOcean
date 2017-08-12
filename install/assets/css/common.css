@@ -24,7 +24,7 @@ body {
 	background-color: #FFF;
 }
 .collapsible-header > .c-h-title {
-    line-height: 23px;
+	line-height: 23px;
 }
 #ls-b {
 	height: 176px;
@@ -39,22 +39,23 @@ body {
 }
 .avatar {
 	margin: 0 auto;
-  position: relative;
-  width: 200px;
-  height: 200px;
+	position: relative;
+	width: 200px;
+	height: 200px;
 }
 .avatar .after {
 	transition: all .25s;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  color: #FFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	color: #FFF;
+	padding: 88px;
 }
 .avatar:hover .after {
 	transition: all .25s;
-    opacity: 1;
-    background: rgba(0, 0, 0, .5);
+	opacity: 1;
+	background: rgba(0, 0, 0, .5);
 }
