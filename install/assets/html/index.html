@@ -14,7 +14,10 @@
 				<div class="collapsible-header active">
 					<i class="material-icons">location_searching</i>
 					<div class="c-h-title" id="ald-t">Automatic language detection</div>
-					<i class="material-icons collapsible-done hide">done</i>
+					<div class="collapsible-done hide">
+						<div class="progress"><div class="indeterminate"></div></div>
+						<i class="material-icons hide">done</i>
+					</div>
 				</div>
 				<div class="collapsible-body">
 					<div class="progress">
@@ -26,7 +29,10 @@
 				<div class="collapsible-header">
 					<i class="material-icons">language</i>
 					<div class="c-h-title" id="ls-t">Language select</div>
-					<i class="material-icons collapsible-done hide">done</i>
+					<div class="collapsible-done hide">
+						<div class="progress"><div class="indeterminate"></div></div>
+						<i class="material-icons hide">done</i>
+					</div>
 				</div>
 				<div id="ls-b" class="collapsible-body">
 					<select id="ls-s">{languageSelect}</select>
@@ -46,7 +52,10 @@
 				<div class="collapsible-header">
 					<i class="material-icons">view_headline</i>
 					<div class="c-h-title" id="sd-t">Database setup</div>
-					<i class="material-icons collapsible-done hide">done</i>
+					<div class="collapsible-done hide">
+						<div class="progress"><div class="indeterminate"></div></div>
+						<i class="material-icons hide">done</i>
+					</div>
 				</div>
 				<div class="collapsible-body">
 					<form id="sd-f">
@@ -97,7 +106,10 @@
 			<li id="step3">
 				<div class="collapsible-header">
 					<i class="material-icons">whatshot</i>Third
-					<i class="material-icons collapsible-done hide">done</i>
+					<div class="collapsible-done hide">
+						<div class="progress"><div class="indeterminate"></div></div>
+						<i class="material-icons hide">done</i>
+					</div>
 				</div>
 				<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span>
 				</div>
@@ -110,12 +122,27 @@
 	<script src="../admin/assets/js/common.js"></script>
 
 	<script>
+	function stateChange(id, status) {
+		var element = '#step' + id + ' .collapsible-done';
+		$(element).removeClass('hide');
+		if (status == 'load') {
+			$(element + ' div.progress').removeClass('hide');
+			$(element + ' i').addClass('hide');
+		} else if(status == 'done') {
+			$(element + ' i').removeClass('hide');
+			$(element + ' div.progress').addClass('hide');
+		} else if(status == 'none') {
+			$(element + ' i').addClass('hide');
+			$(element + ' div.progress').addClass('hide');
+		}
+	}
+
 	$(document).ready(function() {
 		$('.collapsible').unbind('click');
 
 		languageLoad('languages/{languagesDefault}.json');
 		$('.collapsible').collapsible('open', 1);
-		$('#step0 .collapsible-done').removeClass('hide');
+		stateChange('0', 'done');
 
 		$('select').material_select();
 
@@ -123,7 +150,7 @@
 		var languagesAvailable = JSON.parse('{languagesAvailableJson}');
 
 		$("#ls-n").click(function(e) {
-			$('#ls-p').removeClass('hide');
+			stateChange('1', 'load');
 
 			var languageSelected = $('#ls-s>option:selected').text();
 
@@ -131,18 +158,18 @@
 				languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
 			}
 
-			$('#ls-p').addClass('hide');
 			$('.collapsible').collapsible('open', 2);
-			$('#step1 .collapsible-done').removeClass('hide');
+			stateChange('1', 'done');
 		});
 
 		// Setup database
 		$("#sd-n").click(function() {
-			$('#sd-pr').removeClass('hide');
+			stateChange('2', 'load');
 
 			$("#sd-f input:required").toArray().forEach(function(item) {
 				if ($(item).val() === '') {
 					$(item).addClass("invalid");
+					stateChange('2', 'none');
 					return;
 				}
 
@@ -153,14 +180,14 @@
 					success: function(data) {
 						if (data == "true") {
 							$('.collapsible').collapsible('open', 3);
-							$('#step2 .collapsible-done').removeClass('hide');
+							stateChange('2', 'done');
 						} else {
+							stateChange('2', 'none');
 							alert("try");
 						}
 					}
 				})
 			});
-			$('#sd-pr').addClass('hide');
 		});
 	});
 	</script>

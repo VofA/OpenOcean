@@ -8,7 +8,8 @@
 	display: inline-block;
 }
 .progress {
-    margin: 1rem 0 1rem 0;
+	width: 150px;
+	margin: 8px;
 }
 ul.collapsible {
 	margin-top: 16px;
@@ -29,6 +30,7 @@ body {
 	height: 176px;
 }
 .collapsible-done {
+	display: inherit;
 	margin: 0 0 0 auto;
 	color: green;
 }
