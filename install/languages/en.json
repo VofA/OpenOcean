@@ -12,5 +12,10 @@
 	"sd-n":"Next",
 	"sd-p":"Port",
 	"sd-p-s":"Use custom port",
-	"sd-s":"Socket"
+	"sd-s":"Socket",
+	"aa-l":"Login",
+	"aa-pw":"Password",
+	"aa-u":"Upload",
+	"aa-e":"Email",
+	"aa-n":"Next"
 }

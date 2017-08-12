@@ -109,13 +109,46 @@
 			</li>
 			<li id="step3">
 				<div class="collapsible-header">
-					<i class="material-icons">whatshot</i>Third
+					<i class="material-icons">account_box</i>
+					<div class="c-h-title" id="aa-t">Admin account</div>
 					<div class="collapsible-done hide">
 						<div class="progress"><div class="indeterminate"></div></div>
 						<i class="material-icons hide">done</i>
 					</div>
 				</div>
-				<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span>
+				<div class="collapsible-body">
+					<form id="aa-f">
+						<div>
+							<div class="avatar-container center-align">
+								<div class="avatar">
+									<img src="http://29palms.ru/imagehost/image.php?di=4YUW" alt="" class="circle" width="200px" height="200px">
+									<div class="alt">Lorem ipsum dolor sit amet.</div>
+								</div>
+							</div>
+						</div>
+						<div class="input-field">
+							<input id="login" type="text" name="login" required>
+							<label id="aa-l" for="login"></label>
+						</div>
+						<div class="input-field">
+							<input id="password" type="password" name="password" required>
+							<label id="aa-pw" for="password"></label>
+						</div>
+						<div class="input-field">
+							<input id="email" type="email" name="email" required>
+							<label id="aa-e" for="email"></label>
+						</div>
+						<div class="file-field input-field">
+				      <div class="waves-effect waves-light btn">
+				        <span id="aa-u"></span>
+				        <input type="file" name="avatar">
+				      </div>
+				      <div class="file-path-wrapper">
+				        <input class="file-path validate" type="text">
+				      </div>
+				    </div>
+						<a id="aa-n" class="waves-effect waves-light btn"></a>
+					</form>
 				</div>
 			</li>
 		</ul>
@@ -176,30 +209,31 @@
 
 		// Setup database
 		$("#sd-n").click(function() {
-			stateChange('2', 'load');
-
-			$("#sd-f input:required").toArray().forEach(function(item) {
-				if ($(item).val() === '') {
-					$(item).addClass("invalid");
-					stateChange('2', 'none');
-					return;
-				}
-
-				$.ajax({
-					type: "POST",
-					url: "databaseSetup.php",
-					data: $("#sd-f").serialize(),
-					success: function(data) {
-						if (data == "true") {
-							$('.collapsible').collapsible('open', 3);
-							stateChange('2', 'done');
-						} else {
-							stateChange('2', 'none');
-							alert("try");
-						}
-					}
-				})
-			});
+		// 	stateChange('2', 'load');
+		//
+		// 	$("#sd-f input:required").toArray().forEach(function(item) {
+		// 		if ($(item).val() === '') {
+		// 			$(item).addClass("invalid");
+		// 			stateChange('2', 'none');
+		// 			return;
+		// 		}
+		//
+		// 		$.ajax({
+		// 			type: "POST",
+		// 			url: "databaseSetup.php",
+		// 			data: $("#sd-f").serialize(),
+		// 			success: function(data) {
+		// 				if (data == "true") {
+		// 					$('.collapsible').collapsible('open', 3);
+		// 					stateChange('2', 'done');
+		// 				} else {
+		// 					stateChange('2', 'none');
+		// 					alert("try");
+		// 				}
+		// 			}
+		// 		})
+		// 	});
+		$('.collapsible').collapsible('open', 3);
 		});
 	});
 	</script>
