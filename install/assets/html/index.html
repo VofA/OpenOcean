@@ -10,16 +10,24 @@
 <body>
 	<div class="container">
 		<ul class="collapsible popout" data-collapsible="accordion">
-			<li>
-				<div class="collapsible-header active"><i class="material-icons">location_searching</i><div class="c-h-title" id="ald-t">Automatic language detection</div></div>
+			<li id="step0">
+				<div class="collapsible-header active">
+					<i class="material-icons">location_searching</i>
+					<div class="c-h-title" id="ald-t">Automatic language detection</div>
+					<i class="material-icons collapsible-done hide">done</i>
+				</div>
 				<div class="collapsible-body">
 					<div class="progress">
 						<div class="indeterminate"></div>
 					</div>
 				</div>
 			</li>
-			<li>
-				<div class="collapsible-header"><i class="material-icons">language</i><div class="c-h-title" id="ls-t">Language select</div></div>
+			<li id="step1">
+				<div class="collapsible-header">
+					<i class="material-icons">language</i>
+					<div class="c-h-title" id="ls-t">Language select</div>
+					<i class="material-icons collapsible-done hide">done</i>
+				</div>
 				<div id="ls-b" class="collapsible-body">
 					<select id="ls-s">{languageSelect}</select>
 					<div class="row">
@@ -34,8 +42,12 @@
 					</div>
 				</div>
 			</li>
-			<li>
-				<div class="collapsible-header"><i class="material-icons">view_headline</i><div class="c-h-title" id="sd-t">Database setup</div></div>
+			<li id="step2">
+				<div class="collapsible-header">
+					<i class="material-icons">view_headline</i>
+					<div class="c-h-title" id="sd-t">Database setup</div>
+					<i class="material-icons collapsible-done hide">done</i>
+				</div>
 				<div class="collapsible-body">
 					<form id="sd-f">
 						<div class="input-field">
@@ -82,9 +94,13 @@
 					</form>
 				</div>
 			</li>
-			<li>
-				<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-				<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+			<li id="step3">
+				<div class="collapsible-header">
+					<i class="material-icons">whatshot</i>Third
+					<i class="material-icons collapsible-done hide">done</i>
+				</div>
+				<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span>
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -99,6 +115,7 @@
 
 		languageLoad('languages/{languagesDefault}.json');
 		$('.collapsible').collapsible('open', 1);
+		$('#step0 .collapsible-done').removeClass('hide');
 
 		$('select').material_select();
 
@@ -116,6 +133,7 @@
 
 			$('#ls-p').addClass('hidden');
 			$('.collapsible').collapsible('open', 2);
+			$('#step1 .collapsible-done').removeClass('hide');
 		});
 
 		// Setup database
@@ -135,6 +153,7 @@
 					success: function(data) {
 						if (data == "true") {
 							$('.collapsible').collapsible('open', 3);
+							$('#step2 .collapsible-done').removeClass('hide');
 						} else {
 							alert("try");
 						}

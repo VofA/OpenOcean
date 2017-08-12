@@ -31,3 +31,7 @@ body {
 #ls-b {
 	height: 176px;
 }
+.collapsible-done {
+	margin: 0 0 0 auto;
+	color: green;
+}
