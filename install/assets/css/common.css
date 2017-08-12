@@ -16,3 +16,12 @@
 ul.collapsible {
 	margin-top: 16px;
 }
+.container {
+	max-width: 720px;
+}
+body {
+	background-color: #FAFAFA;
+}
+.collapsible-body {
+	background-color: #FFF;
+}
