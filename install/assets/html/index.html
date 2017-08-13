@@ -117,9 +117,9 @@
 					</div>
 				</div>
 				<div class="collapsible-body">
-					<form id="aa-f">
+					<form id="aa-f" action="AdminAccount.php" method="POST">
 						<div class="avatar circle">
-							<input type="file" name="avatar" style="display:none">
+							<input id="aa-a" type="file" name="avatar" style="display:none">
 							<img src="../admin/assets/img/user.png" alt="Set picture" class="circle" width="200px" height="200px">
 							<div class="after circle waves-effect waves-light">
 								<i class="material-icons">add_a_photo</i>
@@ -137,7 +137,8 @@
 							<input id="email" type="email" name="email" required>
 							<label id="aa-e" for="email"></label>
 						</div>
-						<a id="aa-n" class="waves-effect waves-light btn"></a>
+						<!-- <a id="aa-n" class="waves-effect waves-light btn"></a> -->
+						<input class="waves-effect waves-light btn" type="submit" value="submit" />
 					</form>
 				</div>
 			</li>
@@ -189,42 +190,47 @@
 			stateChange('1', 'done');
 		});
 
-		$('#sp-p-cb').click(function() {
-			if ($('#sp-p-cb').is(':checked')) {
-				$('#port').prop('disabled', false);
-			} else {
-				$('#port').prop('disabled', true);
-			}
-		});
+		// $('#sp-p-cb').click(function() {
+		// 	if ($('#sp-p-cb').is(':checked')) {
+		// 		$('#port').prop('disabled', false);
+		// 	} else {
+		// 		$('#port').prop('disabled', true);
+		// 	}
+		// });
 
 		// Setup database
 		$("#sd-n").click(function() {
-			// 	stateChange('2', 'load');
+			// stateChange('2', 'load');
 			//
-			// 	$("#sd-f input:required").toArray().forEach(function(item) {
-			// 		if ($(item).val() === '') {
-			// 			$(item).addClass("invalid");
-			// 			stateChange('2', 'none');
-			// 			return;
-			// 		}
+			// $("#sd-f input:required").toArray().forEach(function(item) {
+			// 	if ($(item).val() === '') {
+			// 		$(item).addClass("invalid");
+			// 		stateChange('2', 'none');
+			// 		return;
+			// 	}
 			//
-			// 		$.ajax({
-			// 			type: "POST",
-			// 			url: "databaseSetup.php",
-			// 			data: $("#sd-f").serialize(),
-			// 			success: function(data) {
-			// 				if (data == "true") {
-			// 					$('.collapsible').collapsible('open', 3);
-			// 					stateChange('2', 'done');
-			// 				} else {
-			// 					stateChange('2', 'none');
-			// 					alert("try");
-			// 				}
+			// 	$.ajax({
+			// 		type: "POST",
+			// 		url: "databaseSetup.php",
+			// 		data: $("#sd-f").serialize(),
+			// 		success: function(data) {
+			// 			if (data == "true") {
+			// 				$('.collapsible').collapsible('open', 3);
+			// 				stateChange('2', 'done');
+			// 			} else {
+			// 				stateChange('2', 'none');
+			// 				alert("try");
 			// 			}
-			// 		})
-			// 	});
+			// 		}
+			// 	})
+			// });
 			$('.collapsible').collapsible('open', 3);
 		});
+
+		$('.after').on('click', function() {
+			$('#aa-a').trigger('click');
+		});
+
 	});
 	</script>
 </body>
