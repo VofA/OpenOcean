@@ -14,16 +14,14 @@ if (!in_array($languagesDefault, $languagesAvailable)){
 $languageSelect = "";
 foreach ($languagesAvailable as $key => $value) {
 	if ($value != $languagesDefault) {
-		$languageSelect .= "<option>$key</option>";
+		$languageSelect .= "<option value='$value'>$key</option>";
 	} else {
-		$languageSelect .= "<option selected>$key</option>";
+		$languageSelect .= "<option value='$value' selected>$key</option>";
 	}
 }
 
 $templateData = array(
-	'languageSelect' => $languageSelect,
-	'languagesDefault' => $languagesDefault,
-	'languagesAvailableJson' => $languagesAvailableJson
+	'languageSelect' => $languageSelect
 	);
 
 $templateFile = file_get_contents('assets/html/index.html');
