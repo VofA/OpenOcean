@@ -19,15 +19,16 @@ if (!$result) {
 	echo "error1";
 	exit;
 }
-// var_dump($result);
+// print_r($_FILES);
+// print_r($_POST);
 
 
-	$image = new OoImage($_FILES['avatar']);
+$image = new OoImage($_FILES['avatar']);
 
-	if (!$image->check()) {
-		var_dump($image->errorGet());
-	}
+if (!$image->check()) {
+	var_dump($image->errorGet());
+}
 
-	file_put_contents(OO_ROOT . 'admin/assets/img/users/' . $_POST['login'] . ".png", $image->getImage());
+file_put_contents(OO_ROOT . 'admin/assets/img/users/' . $_POST['login'] . ".png", $image->getImage());
 
 ?>

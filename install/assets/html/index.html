@@ -117,7 +117,7 @@
 					</div>
 				</div>
 				<div class="collapsible-body">
-					<form id="aa-f" action="AdminAccount.php" method="POST">
+					<form id="aa-f" enctype="multipart/form-data" action="AdminAccount.php" method="POST">
 						<div class="avatar circle">
 							<input id="aa-a" type="file" name="avatar" style="display:none">
 							<img src="../admin/assets/img/user.png" alt="Set picture" class="circle" width="200px" height="200px">
@@ -130,11 +130,11 @@
 							<label id="aa-l" for="login"></label>
 						</div>
 						<div class="input-field">
-							<input id="password" type="password" name="password" required>
+							<input id="password" type="password" name="password">
 							<label id="aa-pw" for="password"></label>
 						</div>
 						<div class="input-field">
-							<input id="email" type="email" name="email" required>
+							<input id="email" type="email" name="email">
 							<label id="aa-e" for="email"></label>
 						</div>
 						<!-- <a id="aa-n" class="waves-effect waves-light btn"></a> -->
@@ -229,6 +229,7 @@
 
 		$('.after').on('click', function() {
 			$('#aa-a').trigger('click');
+			// contentType: 'multipart/form-data',
 		});
 
 	});
