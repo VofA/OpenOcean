@@ -23,15 +23,13 @@ function languageLoad(filePath) {
 
 $(document).ready(function() {
     $('.collapsible').unbind('click');
-    stateChange('0', 'done');
-
     $('select').material_select();
 
     var languageDefault = $("#ls-s option:selected").val();
 
-    // Select language
+	// Select language next
     $("#ls-n").click(function(e) {
-        stateChange('1', 'load');
+        stateChange('0', 'load');
 
         var languageSelected = $('#ls-s option:selected').val();
 
@@ -39,6 +37,12 @@ $(document).ready(function() {
             languageLoad('languages/' + languageSelected + '.json');
         }
 
+        $('.collapsible').collapsible('open', 1);
+        stateChange('0', 'done');
+    });
+
+	// Welcome next
+    $("#w-n").click(function(e) {
         $('.collapsible').collapsible('open', 2);
         stateChange('1', 'done');
     });
@@ -52,7 +56,7 @@ $(document).ready(function() {
         }
     });
 
-    // Setup database
+    // Setup database next
     $("#sd-n").click(function() {
         stateChange('2', 'load');
 
