@@ -118,12 +118,11 @@
 				</div>
 				<div class="collapsible-body">
 					<form id="aa-f">
-						<div>
-							<div class="avatar circle">
-								<img src="../admin/assets/img/user.png" alt="Set picture" class="circle" width="200px" height="200px">
-								<div class="after circle waves-effect waves-light">
-									<i class="material-icons">add_a_photo</i>
-								</div>
+						<div class="avatar circle">
+							<input type="file" name="avatar" style="display:none">
+							<img src="../admin/assets/img/user.png" alt="Set picture" class="circle" width="200px" height="200px">
+							<div class="after circle waves-effect waves-light">
+								<i class="material-icons">add_a_photo</i>
 							</div>
 						</div>
 						<div class="input-field">
@@ -137,15 +136,6 @@
 						<div class="input-field">
 							<input id="email" type="email" name="email" required>
 							<label id="aa-e" for="email"></label>
-						</div>
-						<div class="file-field input-field">
-							<div class="waves-effect waves-light btn">
-								<span id="aa-u"></span>
-								<input type="file" name="avatar">
-							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text">
-							</div>
 						</div>
 						<a id="aa-n" class="waves-effect waves-light btn"></a>
 					</form>
