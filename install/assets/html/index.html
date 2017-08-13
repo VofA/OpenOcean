@@ -14,7 +14,7 @@
 			<li id="step0">
 				<div class="collapsible-header active">
 					<i class="material-icons">location_searching</i>
-					<div class="c-h-title" id="ald-t">Automatic language detection</div>
+					<div class="c-h-title" id="ald-t">{ald-t}</div>
 					<div class="collapsible-done hide">
 						<div class="progress"><div class="indeterminate"></div></div>
 						<i class="material-icons hide">done</i>
@@ -29,7 +29,7 @@
 			<li id="step1">
 				<div class="collapsible-header">
 					<i class="material-icons">language</i>
-					<div class="c-h-title" id="ls-t">Language select</div>
+					<div class="c-h-title" id="ls-t">{ls-t}</div>
 					<div class="collapsible-done hide">
 						<div class="progress"><div class="indeterminate"></div></div>
 						<i class="material-icons hide">done</i>
@@ -43,7 +43,7 @@
 			<li id="step2">
 				<div class="collapsible-header">
 					<i class="material-icons">view_headline</i>
-					<div class="c-h-title" id="sd-t">Database setup</div>
+					<div class="c-h-title" id="sd-t">{sd-t}</div>
 					<div class="collapsible-done hide">
 						<div class="progress"><div class="indeterminate"></div></div>
 						<i class="material-icons hide">done</i>
@@ -53,33 +53,33 @@
 					<form id="sd-f">
 						<div class="input-field">
 							<input id="prefix" type="text" name="prefix" value="oo_">
-							<label id="sd-pf" for="prefix"></label>
+							<label id="sd-pf" for="prefix">{sd-pf}</label>
 						</div>
 						<div class="input-field">
 							<input id="host" type="text" name="host" value="127.0.0.1" required>
-							<label id="sd-h" for="host"></label>
+							<label id="sd-h" for="host">{sd-h}</label>
 						</div>
 						<div class="input-field">
 							<input id="username" type="text" name="username" value="root">
-							<label id="sd-un" for="username"></label>
+							<label id="sd-un" for="username">{sd-un}</label>
 						</div>
 						<div class="input-field">
 							<input id="password" type="text" name="password">
-							<label id="sd-pw" for="password"></label>
+							<label id="sd-pw" for="password">{sd-pw}</label>
 						</div>
 						<div class="input-field">
 							<input id="name" type="text" name="name" required>
-							<label id="sd-nm" for="name"></label>
+							<label id="sd-nm" for="name">{sd-nm}</label>
 						</div>
 						<div class="switch">
-							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s"></div></label>
+							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s"></div>{sd-nm-s}</label>
 						</div>
 						<div class="input-field">
 							<input id="port" type="text" name="port" disabled>
-							<label id="sd-p" for="port"></label>
+							<label id="sd-p" for="port">{sd-p}</label>
 						</div>
 						<div class="switch">
-							<label><input id="sp-p-cb" type="checkbox" name="portEdit"><span class="lever"></span><div id="sd-p-s"></div></label>
+							<label><input id="sp-p-cb" type="checkbox" name="portEdit"><span class="lever"></span><div id="sd-p-s">{sd-p-s}</div></label>
 						</div>
 						<a id="sd-n" class="waves-effect waves-light btn"></a>
 					</form>
@@ -122,7 +122,7 @@
 	$(document).ready(function() {
 		$('.collapsible').unbind('click');
 
-		languageLoad('languages/{languagesDefault}.json');
+		//languageLoad('languages/{languagesDefault}.json');
 		$('.collapsible').collapsible('open', 1);
 		stateChange('0', 'done');
 

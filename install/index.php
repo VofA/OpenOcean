@@ -1,5 +1,6 @@
 <?php
 
+require_once('../admin/config.php');
 require_once('../admin/includes/OoTemplate.php');
 
 $languagesAvailableJson = file_get_contents('languages/available.json');
@@ -26,7 +27,7 @@ $templateData = array(
 	);
 
 $templateFile = file_get_contents('assets/html/index.html');
-$template = new OoTemplate($templateFile, $templateData);
+$template = new OoTemplate($templateFile, $templateData, OO_ROOT . "install/languages/" . $languagesDefault . ".json");
 $template->parse();
 echo($template->get());
 
