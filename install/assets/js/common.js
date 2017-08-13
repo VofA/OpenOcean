@@ -1,15 +1,15 @@
 function stateChange(id, status) {
     var element = '#step' + id + ' .collapsible-done';
-    $(element).removeClass('hide');
-    if (status == 'load') {
-        $(element + ' div.progress').removeClass('hide');
-        $(element + ' i').addClass('hide');
+
+	if (status == 'none') {
+        $(element + ' > div').addClass('hide');
+        $(element + ' > i').addClass('hide');
+    } else if (status == 'load') {
+		$(element + ' > div').removeClass('hide');
+        $(element + ' > i').addClass('hide');
     } else if (status == 'done') {
-        $(element + ' i').removeClass('hide');
-        $(element + ' div.progress').addClass('hide');
-    } else if (status == 'none') {
-        $(element + ' i').addClass('hide');
-        $(element + ' div.progress').addClass('hide');
+		$(element + ' > div').addClass('hide');
+        $(element + ' > i').removeClass('hide');
     }
 }
 
