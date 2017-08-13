@@ -1,5 +1,6 @@
 {
-	"ald-t":"Automatic language detection",
+	"w-t":"Welcome",
+	"w-n":"New",
 	"ls-t":"Language select",
 	"ls-n":"Next",
 	"sd-t":"Database setup",
@@ -11,6 +12,5 @@
 	"sd-pw":"Password",
 	"sd-n":"Next",
 	"sd-p":"Port",
-	"sd-p-s":"Use custom port",
-	"sd-s":"Socket"
+	"sd-p-s":"Use custom port"
 }
