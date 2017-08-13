@@ -24,12 +24,12 @@ class OoTemplate {
 	}
 
 	function parse() {
+		$this->translate->parse();
+		$this->content = $this->translate->get();
+
 		foreach ($this->data as $key => $value) {
 			$this->content = str_replace('{' . $key . '}', $value , $this->content);
 		}
-
-		$this->translate->parse();
-		$this->content = $this->translate->get();
 	}
 
 	function get() {
