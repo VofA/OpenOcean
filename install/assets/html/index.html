@@ -120,7 +120,7 @@
 					<form id="aa-f" enctype="multipart/form-data" action="AdminAccount.php" method="POST">
 						<div class="avatar circle">
 							<input id="aa-a" type="file" name="avatar" style="display:none">
-							<img src="../admin/assets/img/user.png" alt="Set picture" class="circle" width="200px" height="200px">
+							<img id="aa-i" src="../admin/assets/img/user.png" alt="Set picture">
 							<div class="after circle waves-effect waves-light">
 								<i class="material-icons">add_a_photo</i>
 							</div>
@@ -227,6 +227,21 @@
 			$('.collapsible').collapsible('open', 3);
 		});
 
+		function readURL(input) {
+
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#aa-i').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$("#aa-a").change(function(){
+			readURL(this);
+		});
 		$('.after').on('click', function() {
 			$('#aa-a').trigger('click');
 			// contentType: 'multipart/form-data',
