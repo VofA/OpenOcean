@@ -132,6 +132,7 @@
 						<div class="input-field">
 							<input id="password" type="password" name="password" required>
 							<label id="aa-pw" for="password"></label>
+							<i class="material-icons" id="aa-pwv">visibility_off</i>
 						</div>
 						<div class="input-field">
 							<input id="email" type="email" name="email" required>
@@ -149,6 +150,15 @@
 	<script src="../admin/assets/js/common.js"></script>
 
 	<script>
+	$(document).ready(function(){
+		$('#aa-pwv').click(function(){
+			$(this).text(function(a, b){
+				return b === 'visibility' ? 'visibility_off' : 'visibility'
+			});
+      // заменить type=password на type=text
+		});
+	});
+
 	function stateChange(id, status) {
 		var element = '#step' + id + ' .collapsible-done';
 		$(element).removeClass('hide');
