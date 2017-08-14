@@ -13,6 +13,7 @@
 	"sd-p":"Port",
 	"sd-p-s":"Use custom port",
 	"sd-s":"Socket",
+	"aa-t":"Account setup",
 	"aa-l":"Login",
 	"aa-pw":"Password",
 	"aa-u":"Upload",
