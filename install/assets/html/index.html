@@ -117,10 +117,10 @@
 					</div>
 				</div>
 				<div class="collapsible-body">
-					<form id="aa-f">
+					<form id="aa-f" enctype="multipart/form-data" action="AdminAccount.php" method="POST">
 						<div class="avatar circle">
-							<input type="file" name="avatar" style="display:none">
-							<img src="../admin/assets/img/user.png" alt="Set picture" class="circle" width="200px" height="200px">
+							<input id="aa-a" type="file" name="avatar" style="display:none">
+							<img id="aa-i" src="../admin/assets/img/user.png" alt="Set picture">
 							<div class="after circle waves-effect waves-light">
 								<i class="material-icons">add_a_photo</i>
 							</div>
@@ -130,15 +130,16 @@
 							<label id="aa-l" for="login"></label>
 						</div>
 						<div class="input-field">
-							<input id="password" type="password" name="password" required>
+							<input id="password" type="password" name="password">
 							<label id="aa-pw" for="password"></label>
 							<i class="material-icons" id="aa-pwv">visibility_off</i>
 						</div>
 						<div class="input-field">
-							<input id="email" type="email" name="email" required>
+							<input id="email" type="email" name="email">
 							<label id="aa-e" for="email"></label>
 						</div>
-						<a id="aa-n" class="waves-effect waves-light btn"></a>
+						<!-- <a id="aa-n" class="waves-effect waves-light btn"></a> -->
+						<input class="waves-effect waves-light btn" type="submit" value="submit" />
 					</form>
 				</div>
 			</li>
@@ -199,42 +200,63 @@
 			stateChange('1', 'done');
 		});
 
-		$('#sp-p-cb').click(function() {
-			if ($('#sp-p-cb').is(':checked')) {
-				$('#port').prop('disabled', false);
-			} else {
-				$('#port').prop('disabled', true);
-			}
-		});
+		// $('#sp-p-cb').click(function() {
+		// 	if ($('#sp-p-cb').is(':checked')) {
+		// 		$('#port').prop('disabled', false);
+		// 	} else {
+		// 		$('#port').prop('disabled', true);
+		// 	}
+		// });
 
 		// Setup database
 		$("#sd-n").click(function() {
-			// 	stateChange('2', 'load');
+			// stateChange('2', 'load');
 			//
-			// 	$("#sd-f input:required").toArray().forEach(function(item) {
-			// 		if ($(item).val() === '') {
-			// 			$(item).addClass("invalid");
-			// 			stateChange('2', 'none');
-			// 			return;
-			// 		}
+			// $("#sd-f input:required").toArray().forEach(function(item) {
+			// 	if ($(item).val() === '') {
+			// 		$(item).addClass("invalid");
+			// 		stateChange('2', 'none');
+			// 		return;
+			// 	}
 			//
-			// 		$.ajax({
-			// 			type: "POST",
-			// 			url: "databaseSetup.php",
-			// 			data: $("#sd-f").serialize(),
-			// 			success: function(data) {
-			// 				if (data == "true") {
-			// 					$('.collapsible').collapsible('open', 3);
-			// 					stateChange('2', 'done');
-			// 				} else {
-			// 					stateChange('2', 'none');
-			// 					alert("try");
-			// 				}
+			// 	$.ajax({
+			// 		type: "POST",
+			// 		url: "databaseSetup.php",
+			// 		data: $("#sd-f").serialize(),
+			// 		success: function(data) {
+			// 			if (data == "true") {
+			// 				$('.collapsible').collapsible('open', 3);
+			// 				stateChange('2', 'done');
+			// 			} else {
+			// 				stateChange('2', 'none');
+			// 				alert("try");
 			// 			}
-			// 		})
-			// 	});
+			// 		}
+			// 	})
+			// });
 			$('.collapsible').collapsible('open', 3);
 		});
+
+		function readURL(input) {
+
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#aa-i').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$("#aa-a").change(function(){
+			readURL(this);
+		});
+		$('.after').on('click', function() {
+			$('#aa-a').trigger('click');
+			// contentType: 'multipart/form-data',
+		});
+
 	});
 	</script>
 </body>

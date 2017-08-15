@@ -1,6 +1,6 @@
 <?php
 
-require_once('../admin/includes/OoMySQLi.php');
+require_once('../admin/includes/OoDatabase.php');
 require_once("../admin/includes/OoConfigEditor.php");
 
 foreach ($_POST as $key => $value) {
@@ -9,15 +9,15 @@ foreach ($_POST as $key => $value) {
 	}
 }
 
-$sql = new OoMySQLi();
+$sql = new OoDatabase();
 $config = new OoConfigEditor();
 
 if (isset($_POST["create"])) {
-	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $_POST["port"], $_POST["socket"]);
+	$connectResult = $sql->connectCustom($_POST["host"], $_POST["username"], $_POST["password"], $_POST["port"]);
 
 	$sql->databaseCreate($_POST["name"]);
 } else {
-	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $_POST["port"], $_POST["socket"]);
+	$connectResult = $sql->connectCustom($_POST["host"], $_POST["username"], $_POST["password"], $_POST["port"]);
 }
 
 if ($connectResult) {
