@@ -24,7 +24,11 @@ class OoDatabase {
 			return false;
 		}
 
-		if (!$this->handler->set_charset("utf8")) {
+		return true;
+	}
+
+	function charSet($charset) {
+		if (!$this->handler->set_charset($charset)) {
 			$this->log->write("DB", $this->handler->error);
 			return false;
 		}
