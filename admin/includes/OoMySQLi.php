@@ -44,6 +44,12 @@ class OoMySQLi {
 		return $result;
 	}
 
+	function tableCreate($databaseName, $tableName, $columns) {
+		$result = $this->execute("CREATE TABLE `$databaseName`.`$tableName`($columns) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;");
+
+		return $result;
+	}
+
 	function fetch_assoc($query) {
 		return $query->fetch_assoc();
 	}

@@ -29,12 +29,17 @@ if ($connectResult) {
 	$config->change('DB_HOST', $_POST["host"]);
 	$config->change('DB_USERNAME', $_POST["username"]);
 	$config->change('DB_PASSWORD', $_POST["password"]);
+	$config->change('DB_PREFIX', $_POST["prefix"]);
 	$config->change('DB_NAME', $_POST["name"]);
 	$config->change('DB_PORT', $port);
 
 	$config->save();
 
-	// $sql->execute("");
+	$tablesColumns = array(
+		'users' => '`id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `login` CHAR(64) NOT NULL , `password` CHAR(64) NOT NULL , PRIMARY KEY (`id`), UNIQUE (`login`)'
+	);
+
+	$sql->tableCreate($_POST["name"], $_POST["prefix"] . 'users', $tablesColumns['users']);
 }
 
 echo $connectResult ? 'true' : 'false';
