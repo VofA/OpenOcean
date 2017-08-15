@@ -8,33 +8,24 @@
 
 require_once(__DIR__ . "/OoFile.php");
 
-class OoImage {
-	private $width;
-	private $height;
+class OoImage extends OoFile {
+	private $imageWidth;
+	private $imageHeight;
 
-	private $OoFile;
-
-	private $file;
-
-	public function __construct($file) {
-		$this->file = $file;
-		$this->OoFile = new OoFile($file);
-	}
-
-	public function check() : bool {
-		if (!$this->OoFile->check()) {
+	public function imageCheck() : bool {
+		if (!$this->errorCheck()) {
 			return false;
 		}
 
-		$imageSize = getimagesize($this->file['tmp_name']);
+		$imageSize = getimagesize($this->getFileName());
 
 		if ($imageSize) {
-			$this->width = $imageSize[0];
-			$this->height = $imageSize[1];
+			$this->imageWidth = $imageSize[0];
+			$this->imageHeight = $imageSize[1];
 		}
 
-		if ($this->width < 64 || $this->width > 512 ||
-			$this->height < 64 || $this->height > 512) {
+		if ($this->imageWidth < 64 || $this->imageWidth > 512 ||
+			$this->imageHeight < 64 || $this->imageHeight > 512) {
 
 			return false;
 		}
@@ -42,12 +33,13 @@ class OoImage {
 		return true;
 	}
 
-	public function errorGet() {
-		return $this->OoFile->errorGet();
+	public function imageWidthGet() {
+		return $this->imageWidth;
 	}
 
-	public function getImage() {
-		return $this->OoFile->getFile();
+	public function imageHeightGet() {
+		return $this->imageHeight;
 	}
+
 }
 ?>

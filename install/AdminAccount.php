@@ -15,20 +15,21 @@ if (!$result) {
 
 // $result = $sql->execute('');
 
-if (!$result) {
-	echo "error1";
-	exit;
-}
+// if (!$result) {
+// 	echo "error1";
+// 	exit;
+// }
 // print_r($_FILES);
 // print_r($_POST);
 
 
 $image = new OoImage($_FILES['avatar']);
 
-if (!$image->check()) {
+if (!$image->imageCheck()) {
 	var_dump($image->errorGet());
+	exit;
 }
 
-file_put_contents(OO_ROOT . 'admin/assets/img/users/' . $_POST['login'] . ".png", $image->getImage());
+$image->fileMove('admin/assets/img/users/' . $_POST['login'] . ".png");
 
 ?>

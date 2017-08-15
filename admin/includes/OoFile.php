@@ -6,33 +6,68 @@
 * @copyright 2017 Danil Dumkin
 */
 
+require_once(__DIR__ . "/../config.php");
+
 class OoFile {
-	private $_FILE;
+	private $data;
 	private $error;
 
-	private $file;
+	private $fileName;
 	private $fileSize;
+	private $fileType;
 
-	public function __construct($file) {
-		$this->_FILE = $file;
+	// Default 1 megabyte
+	private $maxSize = 1048576;
+
+	public function __construct($data) {
+		$this->data = $data;
 	}
 
-	public function check() : bool {
-		$this->error = isset($this->_FILE['error']) ? $this->_FILE['error'] : UPLOAD_ERR_NO_FILE;
+	public function maxSizeSet($size) {
+		$this->maxSize = $size;
+	}
+
+	public function errorCheck() : bool {
+		$this->error = isset($this->data['error']) ? $this->data['error'] : UPLOAD_ERR_NO_FILE;
 
 		if ($this->error) {
 			return false;
 		} else {
-			$this->file = $this->_FILE['tmp_name'];
-			$this->fileSize = $this->_FILE['size'];
+			$this->fileName = $this->data['tmp_name'];
+			$this->fileSize = $this->data['size'];
+			$this->fileType = $this->data['type'];
 
-			if ($this->fileSize > 5242880) {
+			if ($this->fileSize > $this->maxSize) {
 				$this->error = UPLOAD_ERR_FORM_SIZE;
 				return false;
 			}
 		}
 
 		return true;
+	}
+
+	public function errorGet() : string {
+		return $this->errorParse();
+	}
+
+	public function getFile() {
+		return file_get_contents($this->fileName);
+	}
+
+	public function getFileName() : string {
+		return $this->fileName;
+	}
+
+	public function getFileSize() : string {
+		return $this->fileSize;
+	}
+
+	public function getFileType() : string {
+		return $this->fileType;
+	}
+
+	public function fileMove($path) : bool {
+		return move_uploaded_file($this->fileName, OO_ROOT . $path);
 	}
 
 	private function errorParse() : string {
@@ -52,14 +87,6 @@ class OoFile {
 			default:
 				return  "Unknown upload error";
 		}
-	}
-
-	public function errorGet() : string {
-		return $this->errorParse();
-	}
-
-	public function getFile() {
-		return file_get_contents($this->file);
 	}
 }
 ?>
