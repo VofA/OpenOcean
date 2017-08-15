@@ -9,24 +9,14 @@ $sql = new OoDatabase();
 $result = $sql->connect();
 
 if (!$result) {
-	echo "error1";
+	echo("Database connect error");
 	exit;
 }
-
-// $result = $sql->execute('');
-
-// if (!$result) {
-// 	echo "error1";
-// 	exit;
-// }
-// print_r($_FILES);
-// print_r($_POST);
-
 
 $image = new OoImage($_FILES['avatar']);
 
 if (!$image->imageCheck()) {
-	var_dump($image->errorGet());
+	echo($image->errorGet());
 	exit;
 }
 
