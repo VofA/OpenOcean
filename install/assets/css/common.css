@@ -37,3 +37,7 @@ body {
 .switch {
 	margin-bottom: 20px;
 }
+.logo {
+	margin-top: 20px;
+	height: 100px;
+}
