@@ -34,16 +34,15 @@
 							<label id="aa-l" for="login"></label>
 						</div>
 						<div class="input-field">
-							<input id="password" type="password" name="password">
+							<input id="password" type="password" name="password" required>
 							<label id="aa-pw" for="password"></label>
 							<i class="material-icons" id="aa-pwv">visibility_off</i>
 						</div>
 						<div class="input-field">
-							<input id="email" type="email" name="email">
+							<input id="email" type="email" name="email" required>
 							<label id="aa-e" for="email"></label>
 						</div>
-						<!-- <a id="aa-n" class="waves-effect waves-light btn"></a> -->
-						<input class="waves-effect waves-light btn" type="submit" value="submit" />
+						<a id="aa-n" class="waves-effect waves-light btn"></a>
 					</form>
 				</div>
 			</li>
@@ -80,12 +79,27 @@
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
+
+		$('#aa-n').on('click', function() {
+			var formData = new FormData(document.querySelector("#aa-f"));
+
+			$.ajax({
+				type: "POST",
+				url: "AdminAccount.php",
+				processData: false,
+    			contentType: false,
+				data: formData,
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		});
+
 		$("#aa-a").change(function(){
 			readURL(this);
 		});
 		$('.after').on('click', function() {
 			$('#aa-a').trigger('click');
-			// contentType: 'multipart/form-data',
 		});
 
 	});
