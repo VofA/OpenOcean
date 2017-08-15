@@ -15,8 +15,6 @@ $sql = new OoDatabase();
 
 if (isset($_POST["create"])) {
 	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], '', $port);
-
-	$sql->databaseCreate($_POST["name"]);
 } else {
 	$connectResult = $sql->connect($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $port);
 }
@@ -33,6 +31,10 @@ if ($connectResult) {
 	$config->change('DB_PORT', $port);
 
 	$config->save();
+
+	if (isset($_POST["create"])) {
+		$sql->databaseCreate($_POST["name"]);
+	}
 
 	$tablesColumns = array(
 		'users' => '`id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `login` CHAR(64) NOT NULL , `password` CHAR(64) NOT NULL , PRIMARY KEY (`id`), UNIQUE (`login`)'
