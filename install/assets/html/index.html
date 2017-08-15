@@ -11,103 +11,7 @@
 <body>
 	<div class="container">
 		<ul class="collapsible popout" data-collapsible="accordion">
-			<li id="step0">
-				<div class="collapsible-header active">
-					<i class="material-icons">location_searching</i>
-					<div class="c-h-title" id="ald-t">Automatic language detection</div>
-					<div class="collapsible-done hide">
-						<div class="progress"><div class="indeterminate"></div></div>
-						<i class="material-icons hide">done</i>
-					</div>
-				</div>
-				<div class="collapsible-body">
-					<div class="progress">
-						<div class="indeterminate"></div>
-					</div>
-				</div>
-			</li>
-			<li id="step1">
-				<div class="collapsible-header">
-					<i class="material-icons">language</i>
-					<div class="c-h-title" id="ls-t">Language select</div>
-					<div class="collapsible-done hide">
-						<div class="progress"><div class="indeterminate"></div></div>
-						<i class="material-icons hide">done</i>
-					</div>
-				</div>
-				<div id="ls-b" class="collapsible-body">
-					<select id="ls-s">{languageSelect}</select>
-					<div class="row">
-						<div class="col s6">
-							<a id="ls-n" class="waves-effect waves-light btn">Next</a>
-						</div>
-						<div class="col s6 valign-wrapper">
-							<div id="ls-p" class="progress hide">
-								<div class="indeterminate"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li id="step2">
-				<div class="collapsible-header">
-					<i class="material-icons">view_headline</i>
-					<div class="c-h-title" id="sd-t">Database setup</div>
-					<div class="collapsible-done hide">
-						<div class="progress"><div class="indeterminate"></div></div>
-						<i class="material-icons hide">done</i>
-					</div>
-				</div>
-				<div class="collapsible-body">
-					<form id="sd-f">
-						<div class="input-field">
-							<input id="prefix" type="text" name="prefix" value="oo_">
-							<label id="sd-pf" for="prefix"></label>
-						</div>
-						<div class="input-field">
-							<input id="host" type="text" name="host" value="127.0.0.1" required>
-							<label id="sd-h" for="host"></label>
-						</div>
-						<div class="input-field">
-							<input id="username" type="text" name="username" value="root">
-							<label id="sd-un" for="username"></label>
-						</div>
-						<div class="input-field">
-							<input id="password" type="text" name="password">
-							<label id="sd-pw" for="password"></label>
-						</div>
-						<div class="input-field">
-							<input id="name" type="text" name="name" required>
-							<label id="sd-nm" for="name"></label>
-						</div>
-						<div class="switch">
-							<label><input type="checkbox" name="create" checked><span class="lever"></span><div id="sd-nm-s"></div></label>
-						</div>
-						<div class="input-field">
-							<input id="port" type="text" name="port" disabled>
-							<label id="sd-p" for="port"></label>
-						</div>
-						<div class="switch">
-							<label><input id="sp-p-cb" type="checkbox" name="portEdit"><span class="lever"></span><div id="sd-p-s"></div></label>
-						</div>
-						<div class="input-field">
-							<input id="socket" type="text" name="socket">
-							<label id="sd-s" for="socket"></label>
-						</div>
-						<div class="row">
-							<div class="col s6">
-								<a id="sd-n" class="waves-effect waves-light btn"></a>
-							</div>
-							<div class="col s6 valign-wrapper">
-								<div id="sd-pr" class="progress hide">
-									<div class="indeterminate"></div>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</li>
-			<li id="step3">
+			<li>
 				<div class="collapsible-header">
 					<i class="material-icons">account_box</i>
 					<div class="c-h-title" id="aa-t"></div>
@@ -151,90 +55,17 @@
 	<script src="../admin/assets/js/common.js"></script>
 
 	<script>
-	$(document).ready(function(){
-		$('#aa-pwv').click(function(){
-			$(this).text(function(a, b){
-				return b === 'visibility' ? 'visibility_off' : 'visibility'
-			});
-      // заменить type=password на type=text
-		});
-	});
-
-	function stateChange(id, status) {
-		var element = '#step' + id + ' .collapsible-done';
-		$(element).removeClass('hide');
-		if (status == 'load') {
-			$(element + ' div.progress').removeClass('hide');
-			$(element + ' i').addClass('hide');
-		} else if(status == 'done') {
-			$(element + ' i').removeClass('hide');
-			$(element + ' div.progress').addClass('hide');
-		} else if(status == 'none') {
-			$(element + ' i').addClass('hide');
-			$(element + ' div.progress').addClass('hide');
-		}
-	}
-
 	$(document).ready(function() {
 		$('.collapsible').unbind('click');
 
 		languageLoad('languages/{languagesDefault}.json');
-		$('.collapsible').collapsible('open', 1);
-		stateChange('0', 'done');
+		$('.collapsible').collapsible('open', 0);
 
-		$('select').material_select();
-
-		// Select language
-		var languagesAvailable = JSON.parse('{languagesAvailableJson}');
-
-		$("#ls-n").click(function(e) {
-			stateChange('1', 'load');
-
-			var languageSelected = $('#ls-s>option:selected').text();
-
-			if (languagesAvailable[languageSelected] != '{languagesDefault}') {
-				languageLoad('languages/' + languagesAvailable[languageSelected] + '.json');
-			}
-
-			$('.collapsible').collapsible('open', 2);
-			stateChange('1', 'done');
-		});
-
-		// $('#sp-p-cb').click(function() {
-		// 	if ($('#sp-p-cb').is(':checked')) {
-		// 		$('#port').prop('disabled', false);
-		// 	} else {
-		// 		$('#port').prop('disabled', true);
-		// 	}
-		// });
-
-		// Setup database
-		$("#sd-n").click(function() {
-			// stateChange('2', 'load');
-			//
-			// $("#sd-f input:required").toArray().forEach(function(item) {
-			// 	if ($(item).val() === '') {
-			// 		$(item).addClass("invalid");
-			// 		stateChange('2', 'none');
-			// 		return;
-			// 	}
-			//
-			// 	$.ajax({
-			// 		type: "POST",
-			// 		url: "databaseSetup.php",
-			// 		data: $("#sd-f").serialize(),
-			// 		success: function(data) {
-			// 			if (data == "true") {
-			// 				$('.collapsible').collapsible('open', 3);
-			// 				stateChange('2', 'done');
-			// 			} else {
-			// 				stateChange('2', 'none');
-			// 				alert("try");
-			// 			}
-			// 		}
-			// 	})
-			// });
-			$('.collapsible').collapsible('open', 3);
+		$('#aa-pwv').click(function(){
+			$(this).text(function(a, b){
+				return b === 'visibility' ? 'visibility_off' : 'visibility'
+			});
+			// заменить type=password на type=text
 		});
 
 		function readURL(input) {
