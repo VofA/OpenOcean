@@ -13,7 +13,7 @@ $port = $_POST["port"] ?? null;
 
 $sql = new OoDatabase();
 
-if (isset($_POST["create"])) {
+if (isset($_POST["createDatabase"])) {
 	$connectResult = $sql->connectCustom($_POST["host"], $_POST["username"], $_POST["password"], null, $port);
 } else {
 	$connectResult = $sql->connectCustom($_POST["host"], $_POST["username"], $_POST["password"], $_POST["name"], $port);
@@ -32,7 +32,7 @@ if ($connectResult) {
 
 	$config->save();
 
-	if (isset($_POST["create"])) {
+	if (isset($_POST["createDatabase"])) {
 		$sql->databaseCreate($_POST["name"]);
 	}
 

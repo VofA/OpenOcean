@@ -13,7 +13,7 @@ if (!$result) {
 	exit;
 }
 
-$image = new OoImage($_FILES['avatar']);
+$image = new OoImage($_FILES['photo']);
 
 if (!$image->imageCheck()) {
 	echo($image->errorGet());
