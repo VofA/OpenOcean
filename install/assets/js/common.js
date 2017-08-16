@@ -1,22 +1,25 @@
 function stateChange(id, status) {
 	var element = '#' + id + ' .collapsible-done';
 
-	if (status == 'none') {
+	if (status === 'none') {
 		$(element + ' > div').addClass('hide');
 		$(element + ' > i').addClass('hide');
-	} else if (status == 'load') {
+	} else if (status === 'load') {
 		$(element + ' > div').removeClass('hide');
 		$(element + ' > i').addClass('hide');
-	} else if (status == 'done') {
+	} else if (status === 'done') {
 		$(element + ' > div').addClass('hide');
 		$(element + ' > i').removeClass('hide');
 	}
 }
 
 function languageLoad(filePath) {
-	$.get(filePath, function(data) {
+	$.getJSON(filePath, function(data) {
 		for (var key in data) {
-			$('#' + key).text(data[key]);
+            if (data.hasOwnProperty(key)) {
+                $('#' + key).text(data[key]);
+            }
+
 		}
 	});
 }
@@ -28,7 +31,7 @@ function readURL(input) {
 
 		reader.onload = function (e) {
 			$('#as-f-i').attr('src', e.target.result);
-		}
+		};
 
 		reader.readAsDataURL(input.files[0]);
 	}
