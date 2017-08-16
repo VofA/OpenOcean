@@ -18,7 +18,7 @@ class OoDatabase {
 	}
 
 	function connect() : bool {
-		$this->handler = @new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, null, DB_PORT);
+		$this->handler = @new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
 		if ($this->handler->connect_errno) {
 			$this->log->write("DB", $this->handler->connect_error);
@@ -49,8 +49,6 @@ class OoDatabase {
 	}
 
 	function execute($query) {
-		$query = $this->safe($query);
-
 		$result = $this->handler->query($query);
 
 		if (!$result) {
@@ -61,6 +59,9 @@ class OoDatabase {
 	}
 
 	function tableCreate($databaseName, $tableName, $columns) {
+		$databaseName = $this->safe($databaseName);
+		$tableName = $this->safe($tableName);
+
 		$result = $this->execute("CREATE TABLE `$databaseName`.`$tableName`($columns) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;");
 
 		return $result;

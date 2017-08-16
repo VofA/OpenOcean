@@ -13,6 +13,18 @@ if (!$result) {
 	exit;
 }
 
+$login = urldecode($_POST["login"]);
+$login = $sql->safe($login);
+
+$email = urldecode($_POST["email"]);
+$email = $sql->safe($email);
+
+$password = urldecode($_POST["password"]);
+$password = hash('sha256', $password);
+
+
+$sql->execute("INSERT INTO `oo_users` (`id`, `login`, `password`, `email`) VALUES (NULL, '{$login}', '{$email}', '{$password}')");
+
 $image = new OoImage($_FILES['photo']);
 
 if (!$image->imageCheck()) {

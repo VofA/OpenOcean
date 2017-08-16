@@ -37,10 +37,13 @@ if ($connectResult) {
 	}
 
 	$tablesColumns = array(
-		'users' => '`id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `login` CHAR(64) NOT NULL , `password` CHAR(64) NOT NULL , PRIMARY KEY (`id`), UNIQUE (`login`)'
+		'users' => '`id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `login` VARCHAR(64) NOT NULL , `password` VARCHAR(64) NOT NULL , `email` VARCHAR(254) NOT NULL , PRIMARY KEY (`id`), INDEX (`login`), INDEX (`email`)'
 	);
 
-	$sql->tableCreate($_POST["name"], $_POST["prefix"] . 'users', $tablesColumns['users']);
+	$prefix = $sql->safe($_POST["prefix"]);
+	$name = $sql->safe($_POST["name"]);
+
+	$sql->tableCreate($name, $prefix . 'users', $tablesColumns['users']);
 }
 
 echo $connectResult ? 'true' : 'false';

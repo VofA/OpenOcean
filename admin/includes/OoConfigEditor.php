@@ -14,7 +14,15 @@ class OoConfigEditor {
 	}
 
 	function change($key, $value) {
-		$this->config = preg_replace('~(.*)' . $key . '(.*);~', "define('$key', '$value');", $this->config);
+		$newValue = '';
+
+		if ($value === null) {
+			$newValue = 'null';
+		} else {
+			$newValue = "'$value'";
+		}
+
+		$this->config = preg_replace('~(.*)' . $key . '(.*);~', "define('$key', $newValue);", $this->config);
 	}
 
 	function save() {
