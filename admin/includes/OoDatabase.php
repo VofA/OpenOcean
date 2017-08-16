@@ -70,6 +70,15 @@ class OoDatabase {
 	function fetch_assoc($query) {
 		return $query->fetch_assoc();
 	}
+	function userCreate($login, $password, $email) {
+		$login = $this->safe($login);
+		$email = $this->safe($email);
+		$password = hash('sha256', $password);
+
+		$result = $this->execute("INSERT INTO `" . DB_PREFIX . "users` (`id`, `login`, `password`, `email`) VALUES (NULL, '" . $login . "', '" . $password . "', '" . $email . "')");
+
+		return $result;
+	}
 
 	function fetch_array($query) {
 		return $query->fetch_array();

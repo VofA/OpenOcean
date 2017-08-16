@@ -14,16 +14,10 @@ if (!$result) {
 }
 
 $login = urldecode($_POST["login"]);
-$login = $sql->safe($login);
-
 $email = urldecode($_POST["email"]);
-$email = $sql->safe($email);
-
 $password = urldecode($_POST["password"]);
-$password = hash('sha256', $password);
 
-
-$sql->execute("INSERT INTO `oo_users` (`id`, `login`, `password`, `email`) VALUES (NULL, '{$login}', '{$email}', '{$password}')");
+$sql->userCreate($login, $password, $email);
 
 $image = new OoImage($_FILES['photo']);
 
