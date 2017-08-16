@@ -60,20 +60,20 @@
 				<div class="collapsible-body">
 					<form id="ds-f">
 						<div class="input-field">
-							<input id="host" type="text" name="host" value="127.0.0.1" required>
-							<label id="ds-f-h" for="host">{ds-f-h}</label>
+							<input id="ds-f-host" type="text" name="host" value="127.0.0.1" required>
+							<label id="ds-f-h" for="ds-f-host">{ds-f-h}</label>
 						</div>
 						<div class="input-field">
-							<input id="username" type="text" name="username" value="root">
-							<label id="ds-f-un" for="username">{ds-f-un}</label>
+							<input id="ds-f-username" type="text" name="username" value="root">
+							<label id="ds-f-un" for="ds-f-username">{ds-f-un}</label>
 						</div>
 						<div class="input-field">
-							<input id="password" type="text" name="password">
-							<label id="ds-f-pw" for="password">{ds-f-pw}</label>
+							<input id="ds-f-password" type="text" name="password">
+							<label id="ds-f-pw" for="ds-f-password">{ds-f-pw}</label>
 						</div>
 						<div class="input-field">
-							<input id="name" type="text" name="name" required>
-							<label id="ds-f-n" for="name">{ds-f-n}</label>
+							<input id="ds-f-name" type="text" name="name" required>
+							<label id="ds-f-n" for="ds-f-name">{ds-f-n}</label>
 						</div>
 						<div class="switch">
 							<label>
@@ -83,12 +83,12 @@
 							</label>
 						</div>
 						<div class="input-field">
-							<input id="prefix" type="text" name="prefix" value="oo_">
-							<label id="ds-f-pf" for="prefix">{ds-f-pf}</label>
+							<input id="ds-f-prefix" type="text" name="prefix" value="oo_">
+							<label id="ds-f-pf" for="ds-f-prefix">{ds-f-pf}</label>
 						</div>
 						<div class="input-field">
-							<input id="port" type="text" name="port" disabled>
-							<label id="ds-f-p" for="port">{ds-f-p}</label>
+							<input id="ds-f-port" type="text" name="port" disabled>
+							<label id="ds-f-p" for="ds-f-port">{ds-f-p}</label>
 						</div>
 						<div class="switch">
 							<label>
@@ -122,17 +122,18 @@
 							</div>
 						</div>
 						<div class="input-field">
-							<input id="login" type="text" name="login" required>
-							<label id="as-f-l" for="login">{as-f-l}</label>
+							<input id="as-f-login" type="text" name="login" required>
+							<label id="as-f-l" for="as-f-login">{as-f-l}</label>
 						</div>
 						<div class="input-field">
-							<input id="password" type="password" name="password" required>
-							<label id="as-f-p" for="password">{as-f-p}</label>
-							<i class="material-icons" id="as-f-p-v">visibility_off</i>
+							<input id="as-f-password" type="password" name="password" required>
+							<input id="as-f-password-show" class="hide" type="text" required>
+							<label id="as-f-p" for="as-f-password">{as-f-p}</label>
+							<i class="material-icons" id="as-f-p-v">visibility</i>
 						</div>
 						<div class="input-field">
-							<input id="email" type="email" name="email" required>
-							<label id="as-f-e" for="email">{as-f-e}</label>
+							<input id="as-f-email" type="email" name="email" required>
+							<label id="as-f-e" for="as-f-email">{as-f-e}</label>
 						</div>
 					</form>
 					<a id="as-n" class="waves-effect waves-light btn">{as-n}</a>

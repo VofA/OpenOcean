@@ -68,7 +68,7 @@ $(function() {
 	// Step 'Database setup'
 	// Click checkbox 'Port enabled/disabled'
 	$('#ds-f-p-cb').click(function() {
-		$('#port').prop('disabled', !$('#ds-f-p-cb').is(':checked'));
+		$('#ds-f-port').prop('disabled', !$('#ds-f-p-cb').is(':checked'));
 	});
 	// Click button 'Next'
 	$("#ds-n").click(function() {
@@ -115,12 +115,29 @@ $(function() {
 	$("#as-f-f").change(function() {
 		readURL(this);
 	});
+	// Change password input
+	$("#as-f-password-show").on("change paste keyup", function() {
+		$("#as-f-password").val($(this).val());
+	});
+	// Change show password input
+	$("#as-f-password").on("change paste keyup", function() {
+		$("#as-f-password-show").val($(this).val());
+	});
 	// Click button 'Password show/hide'
 	$('#as-f-p-v').click(function() {
-		$(this).text(function(a, b){
-			return b === 'visibility' ? 'visibility_off' : 'visibility'
-		});
-		// заменить type=password на type=text
+		var status = $(this).text();
+
+		$(this).text(status === 'visibility' ? 'visibility_off' : 'visibility');
+
+		if (status === 'visibility') {
+			$('#as-f-password-show').removeClass('hide');
+			$('#as-f-password').addClass('hide');
+			$('#as-f-p').attr('for', 'as-f-password-show')
+		} else {
+			$('#as-f-password-show').addClass('hide');
+			$('#as-f-password').removeClass('hide');
+			$('#as-f-p').attr('for', 'as-f-password')
+		}
 	});
 	// Click button 'Finish'
 	$('#as-n').on('click', function() {
