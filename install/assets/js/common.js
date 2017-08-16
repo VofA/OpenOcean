@@ -122,6 +122,21 @@ $(function() {
 	});
 	// Click button 'Finish'
 	$('#as-n').on('click', function() {
+		var proceed = true;
+
+		$("#as-f input:required").toArray().forEach(function(item) {
+			if ($(item).val() === '') {
+				$(item).addClass("invalid");
+				stateChange('as', 'none');
+				proceed = false;
+				return;
+			}
+		});
+
+		if (!proceed) {
+			return;
+		}
+
 		var formData = new FormData(document.querySelector("#as-f"));
 
 		$.ajax({
