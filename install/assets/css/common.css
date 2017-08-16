@@ -1,51 +1,57 @@
+body {
+	background-color: #FAFAFA;
+	user-select: none;
+}
+.container {
+	max-width: 720px;
+	min-width: 320px;
+}
+.logo {
+	margin-top: 20px;
+	height: 100px;
+}
+
+.collapsible {
+	margin-top: 16px;
+}
 .collapsible-header {
 	cursor: default;
 }
+.collapsible-done {
+	display: inherit;
+	margin: 0 0 0 auto;
+	width: 20%;
+}
+.collapsible-done .progress {
+	width: 100%;
+	margin: 8px;
+}
+.collapsible-done i {
+	margin: 0 0 0 auto;
+	color: green;
+}
+.collapsible-body {
+	background-color: #FFF;
+}
+
 .switch label .lever {
 	margin: 0 10px 0 0;
 }
 .switch label div {
 	display: inline-block;
 }
-.progress {
-	width: 150px;
-	margin: 8px;
-}
-ul.collapsible {
-	margin-top: 16px;
-}
-.container {
-	max-width: 720px;
-}
-body {
-	background-color: #FAFAFA;
-	user-select: none;
-}
-.collapsible-body {
-	background-color: #FFF;
-}
-.collapsible-header > .c-h-title {
-	line-height: 23px;
-}
-#ls-b {
-	height: 176px;
-}
-.collapsible-done {
-	display: inherit;
-	margin: 0 0 0 auto;
-	color: green;
-}
 .switch {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
-.avatar {
+
+.account-photo {
 	margin: 0 auto;
 	position: relative;
 	width: 200px;
 	height: 200px;
 	overflow: hidden;
 }
-.avatar .after {
+.account-photo .overlay {
 	transition: all .25s;
 	position: absolute;
 	top: 0;
@@ -56,13 +62,23 @@ body {
 	color: #FFF;
 	padding: 74px;
 }
-.avatar .after i {
+.account-photo .overlay i {
 	font-size: 48px;
 }
-.avatar:hover .after {
+.account-photo:hover .overlay {
 	transition: all .25s;
 	opacity: 1;
 	background: rgba(0, 0, 0, .5);
+}
+
+/* Crutch fix freeze in language setup */
+#ls-b {
+	height: 160px;
+}
+
+/* Account setup */
+#as-f-f {
+	display:none;
 }
 #as-f-p-v {
 	position: absolute;
@@ -70,8 +86,9 @@ body {
 	right: .4em;
 	color: #727272;
 	cursor: pointer;
+	opacity: 1;
 }
-.logo {
-	margin-top: 20px;
-	height: 100px;
+#as-f-p-v:hover {
+	transition: all .15s;
+	opacity: 0.75;
 }

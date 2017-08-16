@@ -106,15 +106,12 @@ $(function() {
 
 	// Step 'Account setup'
 	// Click button 'Select account photo'
-	$('.after').on('click', function() {
+	$('.overlay').on('click', function() {
 		$('#as-f-f').trigger('click');
-		console.log("click");
 	});
 	// Change selected account photo
 	$("#as-f-f").change(function() {
-		console.log("change_start");
 		readURL(this);
-		console.log("change_end");
 	});
 	// Click button 'Password show/hide'
 	$('#as-f-p-v').click(function() {
