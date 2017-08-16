@@ -102,16 +102,36 @@
 			<li id="step3">
 				<div class="collapsible-header">
 					<i class="material-icons">account_box</i>
-					<div class="c-h-title" id="aa-t">{aa-t}</div>
-					<div class="collapsible-done">
-						<div class="progress hide">
-							<div class="indeterminate"></div>
-						</div>
+					<div class="c-h-title" id="aa-t"></div>
+					<div class="collapsible-done hide">
+						<div class="progress"><div class="indeterminate"></div></div>
 						<i class="material-icons hide">done</i>
 					</div>
 				</div>
 				<div class="collapsible-body">
-					<a id="aa-n" class="waves-effect waves-light btn">{aa-n}</a>
+					<form id="aa-f" enctype="multipart/form-data" action="AdminAccount.php" method="POST">
+						<div class="avatar circle">
+							<input id="aa-a" type="file" name="avatar" style="display:none">
+							<img id="aa-i" src="../admin/assets/img/user.png" alt="Set picture">
+							<div class="after circle waves-effect waves-light">
+								<i class="material-icons">add_a_photo</i>
+							</div>
+						</div>
+						<div class="input-field">
+							<input id="login" type="text" name="login" required>
+							<label id="aa-l" for="login"></label>
+						</div>
+						<div class="input-field">
+							<input id="password" type="password" name="password" required>
+							<label id="aa-pw" for="password"></label>
+							<i class="material-icons" id="aa-pwv">visibility_off</i>
+						</div>
+						<div class="input-field">
+							<input id="email" type="email" name="email" required>
+							<label id="aa-e" for="email"></label>
+						</div>
+						<a id="aa-n" class="waves-effect waves-light btn"></a>
+					</form>
 				</div>
 			</li>
 		</ul>

@@ -6,6 +6,7 @@
 * @copyright 2017 Danil Dumkin
 */
 
+require_once(__DIR__ . "/../config.php");
 require_once(__DIR__ . "/OoLog.php");
 
 class OoDatabase {
@@ -16,8 +17,19 @@ class OoDatabase {
 		$this->log = new OoLog();
 	}
 
-	function connect($host = null, $user = null, $password = null, $name = null, $port = null, $socket = null) : bool {
-		$this->handler = @new mysqli($host, $user, $password, $name, $port, $socket);
+	function connect() : bool {
+		$this->handler = @new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, null, DB_PORT);
+
+		if ($this->handler->connect_errno) {
+			$this->log->write("DB", $this->handler->connect_error);
+			return false;
+		}
+
+		return true;
+	}
+
+	function connectCustom($host = null, $user = null, $password = null, $name = null, $port = null) : bool {
+		$this->handler = @new mysqli($host, $user, $password, $name, $port);
 
 		if ($this->handler->connect_errno) {
 			$this->log->write("DB", $this->handler->connect_error);

@@ -90,4 +90,48 @@ $(document).ready(function() {
 			}
 		})
 	});
+
+	$('#aa-pwv').click(function(){
+		$(this).text(function(a, b){
+			return b === 'visibility' ? 'visibility_off' : 'visibility'
+		});
+		// заменить type=password на type=text
+	});
+
+	function readURL(input) {
+
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#aa-i').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$('#aa-n').on('click', function() {
+		var formData = new FormData(document.querySelector("#aa-f"));
+
+		$.ajax({
+			type: "POST",
+			url: "AdminAccount.php",
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	});
+
+	$("#aa-a").change(function(){
+		readURL(this);
+	});
+	
+	$('.after').on('click', function() {
+		$('#aa-a').trigger('click');
+	});
+
 });
