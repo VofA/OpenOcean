@@ -82,6 +82,8 @@ $(function() {
 				stateChange('ds', 'none');
 				proceed = false;
 				return;
+			} else {
+				$(item).removeClass("invalid");
 			}
 		});
 
@@ -130,6 +132,8 @@ $(function() {
 				stateChange('as', 'none');
 				proceed = false;
 				return;
+			} else {
+				$(item).removeClass("invalid");
 			}
 		});
 
