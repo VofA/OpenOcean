@@ -46,6 +46,6 @@ if ($connectResult) {
 	$sql->tableCreate($name, $prefix . 'users', $tablesColumns['users']);
 }
 
-echo $connectResult ? 'true' : 'false';
+echo($connectResult ? 'true' : 'false');
 
 ?>

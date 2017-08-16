@@ -150,7 +150,12 @@ $(function() {
 			contentType: false,
 			data: formData,
 			success: function(data) {
-				console.log(data);
+				if (data == "true") {
+					$('.collapsible').collapsible('close', 3);
+					stateChange('as', 'done');
+				} else {
+					stateChange('as', 'none');
+				}
 			}
 		});
 	});

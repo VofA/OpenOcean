@@ -9,7 +9,7 @@ $sql = new OoDatabase();
 $result = $sql->connect();
 
 if (!$result) {
-	echo("Database connect error");
+	echo("false");
 	exit;
 }
 
@@ -21,11 +21,13 @@ $sql->userCreate($login, $password, $email);
 
 $image = new OoImage($_FILES['photo']);
 
-if (!$image->imageCheck()) {
-	echo($image->errorGet());
+if (!$image->errorCheck()) {
+	echo($image->errorGet() == 'File not select' ? 'true' : 'false');
 	exit;
 }
 
 $image->fileMove('admin/assets/img/users/' . $_POST['login'] . ".png");
+
+echo("true");
 
 ?>

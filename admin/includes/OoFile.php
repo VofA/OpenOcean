@@ -21,6 +21,10 @@ class OoFile {
 
 	public function __construct($data) {
 		$this->data = $data;
+
+		$this->fileName = $this->data['tmp_name'];
+		$this->fileSize = $this->data['size'];
+		$this->fileType = $this->data['type'];
 	}
 
 	public function maxSizeSet($size) {
@@ -33,10 +37,6 @@ class OoFile {
 		if ($this->error) {
 			return false;
 		} else {
-			$this->fileName = $this->data['tmp_name'];
-			$this->fileSize = $this->data['size'];
-			$this->fileType = $this->data['type'];
-
 			if ($this->fileSize > $this->maxSize) {
 				$this->error = UPLOAD_ERR_FORM_SIZE;
 				return false;

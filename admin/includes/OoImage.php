@@ -12,8 +12,10 @@ class OoImage extends OoFile {
 	private $imageWidth;
 	private $imageHeight;
 
-	public function imageCheck() : bool {
-		if (!$this->errorCheck()) {
+	private $error = null;
+
+	public function errorCheck() : bool {
+		if (parent::errorCheck() === false) {
 			return false;
 		}
 
@@ -27,10 +29,19 @@ class OoImage extends OoFile {
 		if ($this->imageWidth < 64 || $this->imageWidth > 512 ||
 			$this->imageHeight < 64 || $this->imageHeight > 512) {
 
+			$this->error = "Invalid image size";
+
 			return false;
 		}
 
 		return true;
+	}
+
+	public function errorGet() : string {
+		if ($this->error !== null) {
+			return $this->error;
+		}
+		return parent::errorGet();
 	}
 
 	public function imageWidthGet() {
@@ -39,6 +50,14 @@ class OoImage extends OoFile {
 
 	public function imageHeightGet() {
 		return $this->imageHeight;
+	}
+
+	public function imageWidthSet($value) {
+		$this->imageWidth = $value;
+	}
+
+	public function imageHeightSet($value) {
+		$this->imageHeight = $value;
 	}
 
 }
