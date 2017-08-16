@@ -21,14 +21,28 @@ function languageLoad(filePath) {
 	});
 }
 
-$(document).ready(function() {
+function readURL(input) {
+
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#aa-i').attr('src', e.target.result);
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+$(function() {
 	$('.collapsible').unbind('click');
 	$('select').material_select();
 
 	var languageDefault = $("#ls-s option:selected").val();
 
-	// Select language next
-	$("#ls-n").click(function(e) {
+	// Step 'Language select'
+	// Click button 'Next'
+	$("#ls-n").click(function() {
 		stateChange('0', 'load');
 
 		var languageSelected = $('#ls-s option:selected').val();
@@ -41,22 +55,19 @@ $(document).ready(function() {
 		stateChange('0', 'done');
 	});
 
-	// Welcome next
-	$("#w-n").click(function(e) {
+	// Step 'Welcome'
+	// Click button 'Next'
+	$("#w-n").click(function() {
 		$('.collapsible').collapsible('open', 2);
 		stateChange('1', 'done');
 	});
 
-	// Port enabled checkbox
+	// Step 'Database setup'
+	// Click checkbox 'Port enabled/disabled'
 	$('#sp-p-cb').click(function() {
-		if ($('#sp-p-cb').is(':checked')) {
-			$('#port').prop('disabled', false);
-		} else {
-			$('#port').prop('disabled', true);
-		}
+		$('#port').prop('disabled', !$('#sp-p-cb').is(':checked'));
 	});
-
-	// Setup database next
+	// Click button 'Next'
 	$("#sd-n").click(function() {
 		stateChange('2', 'load');
 
@@ -91,26 +102,23 @@ $(document).ready(function() {
 		})
 	});
 
-	$('#aa-pwv').click(function(){
+	// Step 'Account setup'
+	// Click button 'Password show/hide'
+	$('#aa-pwv').click(function() {
 		$(this).text(function(a, b){
 			return b === 'visibility' ? 'visibility_off' : 'visibility'
 		});
 		// заменить type=password на type=text
 	});
-
-	function readURL(input) {
-
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function (e) {
-				$('#aa-i').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
+	// Change selected account photo
+	$("#aa-a").change(function() {
+		readURL(this);
+	});
+	// Click button 'Select account photo'
+	$('.after').on('click', function() {
+		$('#aa-a').trigger('click');
+	});
+	// Click button 'Finish'
 	$('#aa-n').on('click', function() {
 		var formData = new FormData(document.querySelector("#aa-f"));
 
@@ -125,13 +133,4 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-	$("#aa-a").change(function(){
-		readURL(this);
-	});
-	
-	$('.after').on('click', function() {
-		$('#aa-a').trigger('click');
-	});
-
 });
