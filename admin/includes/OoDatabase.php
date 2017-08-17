@@ -110,4 +110,3 @@ class OoDatabase {
 		return $this->handler->close();
 	}
 }
-?>

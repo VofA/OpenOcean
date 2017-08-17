@@ -61,4 +61,3 @@ class OoImage extends OoFile {
 	}
 
 }
-?>

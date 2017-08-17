@@ -36,4 +36,3 @@ class OoTemplate {
 		return $this->content;
 	}
 }
-?>

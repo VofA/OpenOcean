@@ -29,4 +29,3 @@ class OoTranslate {
 		return $this->content;
 	}
 }
-?>

@@ -47,5 +47,3 @@ if ($connectResult) {
 }
 
 echo($connectResult ? 'true' : 'false');
-
-?>

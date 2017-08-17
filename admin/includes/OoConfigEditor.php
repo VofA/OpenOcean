@@ -14,8 +14,6 @@ class OoConfigEditor {
 	}
 
 	function change($key, $value) {
-		$newValue = '';
-
 		if ($value === null) {
 			$newValue = 'null';
 		} else {
@@ -29,4 +27,3 @@ class OoConfigEditor {
 		file_put_contents(__DIR__ . "/../config.php", $this->config);
 	}
 }
-?>

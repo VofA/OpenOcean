@@ -8,5 +8,3 @@ define('DB_PASSWORD', null);
 define('DB_PREFIX', 'oo_');
 define('DB_NAME', null);
 define('DB_PORT', null);
-
-?>

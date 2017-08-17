@@ -26,8 +26,10 @@ if (!$image->errorCheck()) {
 	exit;
 }
 
+if (!is_dir(OO_ROOT . 'admin/assets/img/users/')) {
+	mkdir(OO_ROOT . 'admin/assets/img/users/');
+}
+
 $image->fileMove('admin/assets/img/users/' . $_POST['login'] . ".png");
 
 echo("true");
-
-?>

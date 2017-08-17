@@ -22,4 +22,3 @@ class OoLog {
 		file_put_contents($_file, "$_date $text\n", FILE_APPEND);
 	}
 }
-?>

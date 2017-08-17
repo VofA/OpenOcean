@@ -27,6 +27,5 @@ $templateData = array(
 $templateFile = file_get_contents('assets/html/index.html');
 $template = new OoTemplate($templateFile, $templateData, OO_ROOT . "install/languages/" . $languagesDefault . ".json");
 $template->parse();
-echo($template->get());
 
-?>
+echo($template->get());

@@ -41,16 +41,16 @@ $(function() {
 	$('.collapsible').unbind('click');
 	$('select').material_select();
 
-	var languageDefault = $("#ls-s option:selected").val();
+	var languageDefault = $("#ls-s").find("option:selected").val();
 
 	// Step 'Language select'
 	// Click button 'Next'
 	$("#ls-n").click(function() {
 		stateChange('ls', 'load');
 
-		var languageSelected = $('#ls-s option:selected').val();
+		var languageSelected = $('#ls-s').find('option:selected').val();
 
-		if (languageSelected != languageDefault) {
+		if (languageSelected !== languageDefault) {
 			languageLoad('languages/' + languageSelected + '.json');
 		}
 
@@ -79,12 +79,11 @@ $(function() {
 
 		var proceed = true;
 
-		$("#ds-f input:required").toArray().forEach(function(item) {
+		$("#ds-").find("input:required").toArray().forEach(function(item) {
 			if ($(item).val() === '') {
 				$(item).addClass("invalid");
 				stateChange('ds', 'none');
 				proceed = false;
-				return;
 			} else {
 				$(item).removeClass("invalid");
 			}
@@ -99,7 +98,7 @@ $(function() {
 			url: "databaseSetup.php",
 			data: $("#ds-f").serialize(),
 			success: function(data) {
-				if (data == "true") {
+				if (data === "true") {
 					$('.collapsible').collapsible('open', 3);
 					stateChange('ds', 'done');
 				} else {
@@ -146,12 +145,11 @@ $(function() {
 	$('#as-n').on('click', function() {
 		var proceed = true;
 
-		$("#as-f input:required").toArray().forEach(function(item) {
+		$("#as-").find("input:required").toArray().forEach(function(item) {
 			if ($(item).val() === '') {
 				$(item).addClass("invalid");
 				stateChange('as', 'none');
 				proceed = false;
-				return;
 			} else {
 				$(item).removeClass("invalid");
 			}
@@ -170,7 +168,7 @@ $(function() {
 			contentType: false,
 			data: formData,
 			success: function(data) {
-				if (data == "true") {
+				if (data === "true") {
 					$('.collapsible').collapsible('close', 3);
 					stateChange('as', 'done');
 				} else {
