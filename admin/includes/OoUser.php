@@ -16,13 +16,13 @@ class OoUser {
 		$this->handler->connect();
 	}
 
-	public function userCreate($login, $password, $email) {
+	public function userCreate($login, $password, $email) : bool {
 		if (!$this->handler->connected()) {
 			return false;
 		}
 
-		$login = $this->handler->safe($login);
-		$email = $this->handler->safe($email);
+		$login = $this->handler->stringSafe($login);
+		$email = $this->handler->stringSafe($email);
 		$password = hash('sha256', $password);
 
 		$result = $this->handler->execute("INSERT INTO `" . DB_PREFIX . "users` (`id`, `login`, `password`, `email`) VALUES (NULL, '" . $login . "', '" . $password . "', '" . $email . "')");

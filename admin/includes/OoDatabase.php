@@ -16,10 +16,6 @@ class OoDatabase extends OoLog {
 	public function __construct() {
 		parent::__construct('DB');
 	}
-	public function __destruct() {
-		return $this->handler->close();
-	}
-
 	public function connect() : bool {
 		$this->handler = @new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
@@ -57,6 +53,9 @@ class OoDatabase extends OoLog {
 		}
 
 		return true;
+	}
+	public function close() : bool {
+		return $this->handler->close();
 	}
 
 	public function execute($query) {
@@ -125,7 +124,7 @@ class OoDatabase extends OoLog {
 			return false;
 		}
 
-		return $this->execute('CREATE DATABASE ' . $name . ';');
+		return $this->execute('CREATE DATABASE ' . $name . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
 	}
 	public function databaseCheck($name) : bool {
 		if (!$this->connected) {
