@@ -9,104 +9,130 @@
 require_once(__DIR__ . "/../config.php");
 require_once(__DIR__ . "/OoLog.php");
 
-class OoDatabase {
+class OoDatabase extends OoLog {
 	private $handler;
-	private $log;
+	private $connected = false;
 
-	function __construct() {
-		$this->log = new OoLog();
+	public function __construct() {
+		parent::__construct('DB');
+	}
+	public function __destruct() {
+		return $this->handler->close();
 	}
 
-	function connect() : bool {
+	public function connect() : bool {
 		$this->handler = @new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
 		if ($this->handler->connect_errno) {
-			$this->log->write("DB", $this->handler->connect_error);
+			$this->log($this->handler->connect_error);
 			return false;
 		}
 
+		$this->connected = true;
 		return true;
 	}
-
-	function connectCustom($host = null, $user = null, $password = null, $name = null, $port = null) : bool {
-		$this->handler = @new mysqli($host, $user, $password, $name, $port);
+	public function connectCustom($host, $username, $password, $port) : bool {
+		$this->handler = @new mysqli($host, $username, $password, null, $port);
 
 		if ($this->handler->connect_errno) {
-			$this->log->write("DB", $this->handler->connect_error);
+			$this->log($this->handler->connect_error);
 			return false;
 		}
 
+		$this->connected = true;
 		return true;
 	}
+	public function connected() : bool {
+		return $this->connected;
+	}
+	public function charsetSelect($charset = 'utf8') {
+		if (!$this->connected) {
+			$this->log("charsetSelect: connection not established");
+			return false;
+		}
 
-	function charSet($charset) {
 		if (!$this->handler->set_charset($charset)) {
-			$this->log->write("DB", $this->handler->error);
+			$this->log($this->handler->error);
 			return false;
 		}
 
 		return true;
 	}
 
-	function execute($query) {
+	public function execute($query) {
+		if (!$this->connected) {
+			$this->log("execute: connection not established");
+			return false;
+		}
+
 		$result = $this->handler->query($query);
 
 		if (!$result) {
-			$this->log->write("DB", $this->handler->error);
+			$this->log($this->handler->error);
 		}
 
 		return $result;
 	}
+	public function stringSafe($string) {
+		if (!$this->connected) {
+			$this->log("stringSafe: connection not established");
+			return false;
+		}
 
-	function tableCreate($databaseName, $tableName, $columns) {
-		$databaseName = $this->safe($databaseName);
-		$tableName = $this->safe($tableName);
+		return $this->handler->real_escape_string($string);
+	}
+	public function associativeArrayGet($query) {
+		return $query->fetch_assoc();
+	}
+
+	public function tableCreate($databaseName, $tableName, $columns) {
+		if (!$this->connected) {
+			$this->log("tableCreate: connection not established");
+			return false;
+		}
+
+		$databaseName = $this->stringSafe($databaseName);
+		$tableName = $this->stringSafe($tableName);
+		$columns = implode(',', $columns);
 
 		$result = $this->execute("CREATE TABLE `$databaseName`.`$tableName`($columns) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;");
 
 		return $result;
 	}
 
-	function fetch_assoc($query) {
-		return $query->fetch_assoc();
-	}
-	function userCreate($login, $password, $email) {
-		$login = $this->safe($login);
-		$email = $this->safe($email);
-		$password = hash('sha256', $password);
-
-		$result = $this->execute("INSERT INTO `" . DB_PREFIX . "users` (`id`, `login`, `password`, `email`) VALUES (NULL, '" . $login . "', '" . $password . "', '" . $email . "')");
-
-		return $result;
-	}
-
-	function fetch_array($query) {
-		return $query->fetch_array();
-	}
-
-	function databaseSelect($name) {
-		return $this->handler->select_db($name);
-	}
-
-	function databaseCreate($name) {
-		return $this->execute('CREATE DATABASE ' . $name . ';');
-	}
-
-	function databaseCheck($name) {
-		$result = $this->databaseSelect($name);
-		if (!$result) {
-			$this->log->write("DB", $this->handler->error);
+	public function databaseSet($name) : bool {
+		if (!$this->connected) {
+			$this->log("databaseSet: connection not established");
 			return false;
 		}
 
-		return true;
+		return $this->handler->select_db($name);
 	}
+	public function databaseGet() {
+		if (!$this->connected) {
+			$this->log("databaseGet: connection not established");
+			return false;
+		}
 
-	function safe($string) {
-		return $this->handler->real_escape_string($string);
+		$result = $this->execute('SELECT database()');
+		$result = $this->associativeArrayGet($result)['database()'];
+
+		return $result;
 	}
+	public function databaseCreate($name) : bool {
+		if (!$this->connected) {
+			$this->log("databaseCreate: connection not established");
+			return false;
+		}
 
-	function close() {
-		return $this->handler->close();
+		return $this->execute('CREATE DATABASE ' . $name . ';');
+	}
+	public function databaseCheck($name) : bool {
+		if (!$this->connected) {
+			$this->log("databaseCheck: connection not established");
+			return false;
+		}
+
+		return $this->databaseGet() === $name;
 	}
 }

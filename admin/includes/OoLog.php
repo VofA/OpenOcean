@@ -7,18 +7,24 @@
 */
 
 class OoLog {
-	private $logType;
+	private $fileName;
 
-	function __construct() {
-		$this->logType = array(
-			'DB' => 'database.log'
+	public function __construct($type) {
+		$logType = array(
+			'DB' => 'database',
+			'UK' => 'unknown'
 		);
+
+		if (!array_key_exists($type, $logType)){
+			$type = 'UK';
+		}
+
+		$this->fileName = __DIR__ . '/../logs/' . $logType[$type] . '.log';
 	}
 
-	function write($type, $text) {
-		$_file = __DIR__ . "/../logs/" . $this->logType[$type];
-		$_date = "[" . date('H:i:s d.m.Y') . "]";
+	public function log($text) {
+		$date = '[' . date('H:i:s d.m.Y') . ']';
 
-		file_put_contents($_file, "$_date $text\n", FILE_APPEND);
+		file_put_contents($this->fileName, $date . " " . $text . "\n", FILE_APPEND);
 	}
 }
