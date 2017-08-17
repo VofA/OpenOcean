@@ -84,7 +84,7 @@ class OoDatabase extends OoLog {
 		return $query->fetch_assoc();
 	}
 
-	public function tableCreate($databaseName, $tableName, $columns) {
+	public function tableCreate($databaseName, $tableName, $columns) : bool {
 		if (!$this->connected) {
 			$this->log("tableCreate: connection not established");
 			return false;
