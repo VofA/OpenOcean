@@ -1,16 +1,17 @@
 function stateChange(id, status) {
-	var element = '#' + id + ' .collapsible-done';
+    var element = '#' + id + ' .collapsible-done';
 
-	if (status === 'none') {
-		$(element + ' > div').addClass('hide');
-		$(element + ' > i').addClass('hide');
-	} else if (status === 'load') {
-		$(element + ' > div').removeClass('hide');
-		$(element + ' > i').addClass('hide');
-	} else if (status === 'done') {
-		$(element + ' > div').addClass('hide');
-		$(element + ' > i').removeClass('hide');
-	}
+    $(element + ' .progress').addClass('hide');
+    $(element + ' .red-text').addClass('hide');
+    $(element + ' .green-text').addClass('hide');
+
+    if (status === 'load') {
+        $(element + ' .progress').removeClass('hide');
+    } else if (status === 'done') {
+        $(element + ' .green-text').removeClass('hide');
+    } else if (status === 'error') {
+        $(element + ' .red-text').removeClass('hide');
+    }
 }
 
 function languageLoad(filePath) {
@@ -79,10 +80,10 @@ $(function() {
 
 		var proceed = true;
 
-		$("#ds-").find("input:required").toArray().forEach(function(item) {
+		$("#ds-f").find("input:required").toArray().forEach(function(item) {
 			if ($(item).val() === '') {
 				$(item).addClass("invalid");
-				stateChange('ds', 'none');
+				stateChange('ds', 'error');
 				proceed = false;
 			} else {
 				$(item).removeClass("invalid");
@@ -102,7 +103,7 @@ $(function() {
 					$('.collapsible').collapsible('open', 3);
 					stateChange('ds', 'done');
 				} else {
-					stateChange('ds', 'none');
+					stateChange('ds', 'error');
 				}
 			}
 		})
@@ -145,10 +146,10 @@ $(function() {
 	$('#as-n').on('click', function() {
 		var proceed = true;
 
-		$("#as-").find("input:required").toArray().forEach(function(item) {
+		$("#as-f").find("input:required").toArray().forEach(function(item) {
 			if ($(item).val() === '') {
 				$(item).addClass("invalid");
-				stateChange('as', 'none');
+				stateChange('as', 'error');
 				proceed = false;
 			} else {
 				$(item).removeClass("invalid");
@@ -172,7 +173,7 @@ $(function() {
 					$('.collapsible').collapsible('close', 3);
 					stateChange('as', 'done');
 				} else {
-					stateChange('as', 'none');
+					stateChange('as', 'error');
 				}
 			}
 		});

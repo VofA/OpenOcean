@@ -4,7 +4,7 @@ require_once('../admin/includes/OoDatabase.php');
 require_once("../admin/includes/OoConfigEditor.php");
 
 foreach ($_POST as $key => $value) {
-	if ($value == '') {
+	if ($value === '') {
 		$_POST[$key] = null;
 	}
 }
