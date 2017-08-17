@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_POST["host"], $_POST["username"], $_POST["name"])) {
+	exit("Insufficient data");
+}
+
 require_once('../admin/includes/OoDatabase.php');
 require_once("../admin/includes/OoConfigEditor.php");
 

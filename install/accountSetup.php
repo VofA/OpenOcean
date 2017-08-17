@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_POST["login"], $_POST["email"], $_POST["password"])) {
+	exit("Insufficient data");
+}
+
 require_once("../admin/config.php");
 require_once('../admin/includes/OoImage.php');
 require_once('../admin/includes/OoDatabase.php');
