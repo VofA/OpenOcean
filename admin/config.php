@@ -21,4 +21,3 @@ define('DB_PORT', null);
  * Security guarantors
  */
 define('SG_USE_IP', true);
-define('SG_SALT_AUTH', '4Y87g9XRN+j=/YqG`|NwC(M=mrX[C OcTY@hsO_>G`?ez$~20Gdz[A<`*NU:Gsay');

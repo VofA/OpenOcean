@@ -55,7 +55,7 @@ $columns = array(
 	"`login` VARCHAR(64) NOT NULL",
 	"`email` VARCHAR(254) NOT NULL",
 	"`ip` INT UNSIGNED NOT NULL",
-	"`create` TIMESTAMP NOT NULL",
+	"`register` TIMESTAMP NOT NULL",
 	"`password` VARCHAR(128) NOT NULL",
 	"`token` VARCHAR(128)",
 	"`salt` VARCHAR(128)",
