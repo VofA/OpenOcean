@@ -28,12 +28,6 @@ if (!$result) {
 	exit;
 }
 
-$result = $user->login($login, $password);
-if (!$result) {
-	echo($user->errorGet());
-	exit;
-}
-
 $image = new OoImage($_FILES['photo']);
 
 if (!$image->errorCheck()) {

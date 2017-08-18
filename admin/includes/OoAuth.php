@@ -77,7 +77,7 @@ class OoAuth {
 		return $this->error;
 	}
 
-	public function register($login, $password, $email) : bool {
+	public function register($login, $password, $email, $loginAuto = true) : bool {
 		if (!$this->database->connected()) {
 			$this->error = "Connect error";
 			return false;
@@ -86,7 +86,7 @@ class OoAuth {
 		$prefix = $this->database->stringSafe(DB_PREFIX);
 		$login = $this->database->stringSafe($login);
 		$salt = $this->saltGenerate();
-		$password = $this->passwordSecure($password, $salt);
+		$passwordSecure = $this->passwordSecure($password, $salt);
 		$email = $this->database->stringSafe($email);
 
 		$result = $this->database->execute("SELECT * FROM `{$prefix}users` WHERE `login` = '{$login}'");
@@ -95,7 +95,11 @@ class OoAuth {
 			return false;
 		}
 
-		$result = $this->database->execute("INSERT INTO `{$prefix}users` (`id`, `login`, `password`, `email`, `salt`) VALUES (NULL, '{$login}', '{$password}', '{$email}', '{$salt}')");
+		$result = $this->database->execute("INSERT INTO `{$prefix}users` (`id`, `login`, `password`, `email`, `salt`) VALUES (NULL, '{$login}', '{$passwordSecure}', '{$email}', '{$salt}')");
+
+		if ($loginAuto) {
+			$result = $this->login($login, $password);
+		}
 
 		return $result;
 	}
