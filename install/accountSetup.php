@@ -6,8 +6,7 @@ if (!isset($_POST["login"], $_POST["email"], $_POST["password"])) {
 
 require_once('../admin/includes/OoImage.php');
 require_once('../admin/includes/OoDatabase.php');
-require_once('../admin/includes/OoUser.php');
-
+require_once('../admin/includes/OoAuth.php');
 
 $database = new OoDatabase();
 
@@ -21,11 +20,17 @@ $login = urldecode($_POST["login"]);
 $email = urldecode($_POST["email"]);
 $password = urldecode($_POST["password"]);
 
-$user = new OoUser();
+$user = new OoAuth($database);
 
-$result = $user->userCreate($login, $password, $email);
+$result = $user->register($login, $password, $email);
 if (!$result) {
-	echo('false connect error');
+	echo($user->errorGet());
+	exit;
+}
+
+$result = $user->login($login, $password);
+if (!$result) {
+	echo($user->errorGet());
 	exit;
 }
 

@@ -124,7 +124,9 @@ class OoDatabase extends OoLog {
 			return false;
 		}
 
-		return $this->execute('CREATE DATABASE ' . $name . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
+		$name = $this->stringSafe($name);
+
+		return $this->execute("CREATE DATABASE `$name` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
 	}
 	public function databaseCheck($name) : bool {
 		if (!$this->connected) {

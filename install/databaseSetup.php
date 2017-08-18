@@ -53,8 +53,12 @@ $config->save();
 $columns = array(
 	"`id` INT UNSIGNED NOT NULL AUTO_INCREMENT",
 	"`login` VARCHAR(64) NOT NULL",
-	"`password` VARCHAR(64) NOT NULL",
 	"`email` VARCHAR(254) NOT NULL",
+	"`ip` INT UNSIGNED NOT NULL",
+	"`create` TIMESTAMP NOT NULL",
+	"`password` VARCHAR(128) NOT NULL",
+	"`token` VARCHAR(128)",
+	"`salt` VARCHAR(128)",
 	"PRIMARY KEY (`id`)",
 	"INDEX (`login`)",
 	"INDEX (`email`)",
