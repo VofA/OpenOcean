@@ -102,6 +102,32 @@ class OoAuth {
 		return $result;
 	}
 
+	public function changePassword($login, $password) : bool {
+		if (!$this->check()) {
+			$this->error = "Token not select";
+			return false;
+		}
+
+		$prefix = $this->_database->stringSafe(DATABASE_PREFIX);
+		$login = $this->_database->stringSafe($login);
+		$salt = $this->saltGenerate();
+		$passwordSecure = $this->passwordSecure($password, $salt);
+
+		$result = $this->_database->execute("SELECT * FROM `{$prefix}users` WHERE `login` = '{$login}'");
+		if ($result->num_rows !== 0) {
+			$this->error = "User already exists";
+			return false;
+		}
+		
+		$result = $this->_database->execute("UPDATE `{$prefix}users` SET `password` = '{$passwordSecure}', `salt` = '{$salt}' WHERE `oo_users`.`login` = '{$login}';");
+
+		if ($loginAuto) {
+			$result = $this->login($login, $password);
+		}
+
+		return $result;
+	}
+
 	public function login($login, $password) : bool {
 		if (!$this->_database->connected()) {
 			$this->error = "Connect error";

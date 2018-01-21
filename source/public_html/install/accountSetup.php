@@ -33,7 +33,7 @@ if (!$result) {
 
 $config = new OoConfig();
 $config->load();
-$config->change('OPEN_OCEAN_INSTALLED', 'true');
+$config->change('OPEN_OCEAN_INSTALLED', true);
 $config->save();
 
 $image = new OoImage($_FILES['photo']);
@@ -43,10 +43,10 @@ if (!$image->errorCheck()) {
 	exit;
 }
 
-if (!is_dir(PATH_PUBLIC_HTML . 'admin/assets/img/users/')) {
-	mkdir(PATH_PUBLIC_HTML . 'admin/assets/img/users/');
+if (!is_dir(PATH_PUBLIC_HTML . 'assets/pictures/users/')) {
+	mkdir(PATH_PUBLIC_HTML . 'assets/pictures/users/');
 }
 
-$image->fileMove('admin/assets/img/users/' . $_POST['login'] . ".png");
+$image->fileMove('assets/pictures/users/' . $_POST['login'] . ".png");
 
 echo("true");

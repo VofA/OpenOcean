@@ -19,6 +19,7 @@ define('PATH_ROOT', __DIR__ . '/../'); {
 }
 
 define('DEBUG_ENABLE', true);
+define('DEBUG_ENABLE', false);
 
 define('DATABASE_HOST', 'localhost');
 define('DATABASE_USERNAME', 'root');
