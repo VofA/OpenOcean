@@ -23,7 +23,7 @@ class OoDatabase extends OoLog {
 		);
 
 		if ($this->_handler->connect_errno) {
-			$this->log($this->_handler->connect_error);
+			$this->write($this->_handler->connect_error);
 			return false;
 		}
 
@@ -35,7 +35,7 @@ class OoDatabase extends OoLog {
 		$this->_handler = @new mysqli($host, $username, $password, null, $port);
 
 		if ($this->_handler->connect_errno) {
-			$this->log($this->_handler->connect_error);
+			$this->write($this->_handler->connect_error);
 			return false;
 		}
 
@@ -49,12 +49,12 @@ class OoDatabase extends OoLog {
 
 	public function charsetSelect($charset = 'utf8') {
 		if (!$this->_connected) {
-			$this->log("charsetSelect: connection not established");
+			$this->write("charsetSelect: connection not established");
 			return false;
 		}
 
 		if (!$this->_handler->set_charset($charset)) {
-			$this->log($this->_handler->error);
+			$this->write($this->_handler->error);
 			return false;
 		}
 
@@ -67,14 +67,14 @@ class OoDatabase extends OoLog {
 
 	public function execute($query) {
 		if (!$this->_connected) {
-			$this->log("execute: connection not established");
+			$this->write("execute: connection not established");
 			return false;
 		}
 
 		$result = $this->_handler->query($query);
 
 		if (!$result) {
-			$this->log($this->_handler->error);
+			$this->write($this->_handler->error);
 		}
 
 		return $result;
@@ -82,7 +82,7 @@ class OoDatabase extends OoLog {
 
 	public function stringSafe($string) {
 		if (!$this->_connected) {
-			$this->log("stringSafe: connection not established");
+			$this->write("stringSafe: connection not established");
 			return false;
 		}
 
@@ -95,7 +95,7 @@ class OoDatabase extends OoLog {
 
 	public function tableCreate($databaseName, $tableName, $columns) : bool {
 		if (!$this->_connected) {
-			$this->log("tableCreate: connection not established");
+			$this->write("tableCreate: connection not established");
 			return false;
 		}
 
@@ -110,7 +110,7 @@ class OoDatabase extends OoLog {
 
 	public function databaseSet($name) : bool {
 		if (!$this->_connected) {
-			$this->log("databaseSet: connection not established");
+			$this->write("databaseSet: connection not established");
 			return false;
 		}
 
@@ -119,7 +119,7 @@ class OoDatabase extends OoLog {
 
 	public function databaseGet() {
 		if (!$this->_connected) {
-			$this->log("databaseGet: connection not established");
+			$this->write("databaseGet: connection not established");
 			return false;
 		}
 
@@ -131,7 +131,7 @@ class OoDatabase extends OoLog {
 
 	public function databaseCreate($name) : bool {
 		if (!$this->_connected) {
-			$this->log("databaseCreate: connection not established");
+			$this->write("databaseCreate: connection not established");
 			return false;
 		}
 
@@ -142,7 +142,7 @@ class OoDatabase extends OoLog {
 
 	public function databaseCheck($name) : bool {
 		if (!$this->_connected) {
-			$this->log("databaseCheck: connection not established");
+			$this->write("databaseCheck: connection not established");
 			return false;
 		}
 

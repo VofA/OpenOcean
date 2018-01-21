@@ -18,10 +18,14 @@ class OoLog {
 			$type = 'UK';
 		}
 
+		if (!is_dir(PATH_LOGS)) {
+			mkdir(PATH_LOGS);
+		}
+
 		if ($oneDay) {
 			$this->_filename = PATH_LOGS . $type . '_' . date('Y-m-d') . '.log';
 		} else {
-			$this->_filename = __DIR__ . '/../logs/' . $logType[$type] . '.log';
+			$this->_filename = PATH_LOGS . $logType[$type] . '.log';
 		}
 	}
 

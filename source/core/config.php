@@ -1,7 +1,7 @@
 <?php
 
 define('OPEN_OCEAN_VERSION', '0.0.1');
-define('OPEN_OCEAN_INSTALLED', true);
+define('OPEN_OCEAN_INSTALLED', false);
 
 define('HEADERS_X_POWERED_BY', false);
 
