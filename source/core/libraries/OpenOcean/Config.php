@@ -16,9 +16,9 @@ class OoConfig {
 	function change($key, $value) {
 		if ($value === null) {
 			$newValue = 'null';
-		} if ($value === true) {
+		} elseif ($value === true) {
 			$newValue = 'true';
-		} if ($value === false) {
+		} elseif ($value === false) {
 			$newValue = 'false';
 		} else {
 			$newValue = "'$value'";
