@@ -171,8 +171,8 @@ $(function() {
 			success: function(data) {
 				if (data === "true") {
 					$('.collapsible').collapsible('close', 3);
-					// location = 'index.php';
 					stateChange('as', 'done');
+					window.location.href = '..';
 				} else {
 					stateChange('as', 'error');
 				}

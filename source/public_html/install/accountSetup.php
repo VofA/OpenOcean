@@ -9,6 +9,7 @@ require_once("../../core/config.php");
 require_once(PATH_LIBRARIES . 'OpenOcean/Image.php');
 require_once(PATH_LIBRARIES . 'OpenOcean/Database.php');
 require_once(PATH_LIBRARIES . 'OpenOcean/Auth.php');
+require_once(PATH_LIBRARIES . 'OpenOcean/Config.php');
 
 $database = new OoDatabase();
 
@@ -29,6 +30,11 @@ if (!$result) {
 	echo($user->errorGet());
 	exit;
 }
+
+$config = new OoConfig();
+$config->load();
+$config->change('OPEN_OCEAN_INSTALLED', 'true');
+$config->save();
 
 $image = new OoImage($_FILES['photo']);
 
