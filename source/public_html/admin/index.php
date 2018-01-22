@@ -1,40 +1,40 @@
 <?php
 
-require_once("../../core/config.php");
+require_once('../../init.php');
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Database.php');
-require_once(PATH_LIBRARIES . 'OpenOcean/Auth.php');
+require_once(PATH_CLASSES . 'Database.php');
+require_once(PATH_CLASSES . 'Auth.php');
 
 $database = new OoDatabase();
 $database->connect();
 
 $auth = new OoAuth($database);
 
-$result = $auth->check();
-if ($result) {
-	if (isset($_GET['page']) and file_exists("html/modules/{$_GET['page']}.php")) {
-		include("html/modules/{$_GET['page']}.php");
-	} else {
-		include("html/modules/main.php");
-	}
-	exit;
-}
-
-$result = '';
-
 if (isset($_GET['do']) and $_GET['do'] == 'login') {
-	$result = $auth->login($_POST['login'], $_POST['password']);
+	$auth->login($_POST['login'], $_POST['password']);
+} elseif (isset($_GET['do']) and $_GET['do'] == 'logout') {
+	$auth->logout();
 }
 
-if (!$result) {
-	$message = '<div id="message" style="background-color:red">✖ ' . $auth->errorGet() . '</div>';
-} else {
-	if (isset($_GET['page']) and file_exists("html/modules/{$_GET['page']}.php")) {
-		include("html/modules/{$_GET['page']}.php");
-	} else {
-		include("html/modules/main.php");
+if ($auth->check()) {
+	require_once(PATH_MODULES . 'admin/index.php');
+
+	$page = 'main';
+
+	if (isset($_GET['page'])) {
+		if (file_exists(PATH_MODULES . "admin/{$_GET['page']}.php")) {
+			$page = $_GET['page'];
+		} else {
+			$page = 'error';
+		}
 	}
+
+	require_once(PATH_MODULES . 'admin/' . $page . '.php');
+	echo("</div></body></html>");
+
 	exit;
+} else {
+	$message = '<div id="message" style="background-color:red">✖ ' . $auth->errorGet() . '</div>';
 }
 
 ?><!DOCTYPE html>

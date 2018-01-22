@@ -9,8 +9,10 @@ define('TELEMETRY_ENABLE', false);
 
 define('PATH_ROOT', __DIR__ . '/../'); {
 	define('PATH_CORE', PATH_ROOT . 'core/'); {
-		define('PATH_LIBRARIES', PATH_CORE . 'libraries/');
+		define('PATH_CLASSES', PATH_CORE . 'classes/');
+		define('PATH_MODULES', PATH_CORE . 'modules/');
 	}
+	define('PATH_PLUGINS', PATH_ROOT . 'plugins/');
 	define('PATH_LOGS', PATH_ROOT . 'logs/');
 	define('PATH_THEMES', PATH_ROOT . 'themes/');
 	define('PATH_PUBLIC_HTML', PATH_ROOT . 'public_html/'); {
@@ -18,7 +20,6 @@ define('PATH_ROOT', __DIR__ . '/../'); {
 	}
 }
 
-define('DEBUG_ENABLE', true);
 define('DEBUG_ENABLE', false);
 
 define('DATABASE_HOST', 'localhost');

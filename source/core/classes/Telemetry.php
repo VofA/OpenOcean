@@ -6,7 +6,7 @@
 * @copyright 2018 Danil Dumkin
 */
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Log.php');
+require_once(PATH_CLASSES . 'Log.php');
 
 class OoTelemetry {
 	public function __construct() {

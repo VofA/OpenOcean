@@ -6,7 +6,7 @@
 * @copyright 2018 Danil Dumkin
 */
 
-require_once(PATH_LIBRARIES . 'OpenOcean/File.php');
+require_once(PATH_CLASSES . 'File.php');
 
 class OoImage extends OoFile {
 	private $imageWidth;

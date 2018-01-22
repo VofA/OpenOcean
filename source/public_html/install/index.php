@@ -1,10 +1,15 @@
 <?php
 
-require_once("../../core/init.php");
+require_once('../../core/config.php');
+
+if (OPEN_OCEAN_INSTALLED) {
+	header('Location: ../error/404/');
+	exit;
+}
 
 require_once(PATH_LIBRARIES . 'OpenOcean/Template.php');
 
-$languagesAvailableJson = file_get_contents('languages/available.json');
+$languagesAvailableJson = file_get_contents(PATH_INSTALL . 'languages/available.json');
 $languagesAvailable = (array) json_decode($languagesAvailableJson);
 
 $languagesDefault = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -25,7 +30,7 @@ $templateData = array(
 	'languageSelect' => $languageSelect
 );
 
-$templateFile = file_get_contents('assets/html/index.html');
+$templateFile = file_get_contents(PATH_INSTALL . 'assets/html/index.html');
 $template = new OoTemplate($templateFile, $templateData, PATH_PUBLIC_HTML . "install/languages/" . $languagesDefault . ".json");
 $template->parse();
 

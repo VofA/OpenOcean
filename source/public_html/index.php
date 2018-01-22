@@ -1,13 +1,9 @@
-<?php
-
-require_once("init.php");
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Material Components for the web</title>
-	<link rel="stylesheet" href="assets/styles/material-components-web.min.css">
-	<link rel="stylesheet" href="assets/styles/material-icons.css">
+	<link rel="stylesheet" href="theme/styles/material-components-web.min.css">
+	<link rel="stylesheet" href="theme/styles/material-icons.css">
 </head>
 <body class="mdc-typography">
 	<h2 class="mdc-typography--display2">Hello, Material Components!</h2>
@@ -15,6 +11,7 @@ require_once("init.php");
 		<input type="text" class="mdc-text-field__input" id="demo-input">
 		<label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
 	</div>
+	<a href="auth_test.php">Auth test</a>
 	<div class="mdc-switch">
 		<input class="mdc-switch__native-control" type="checkbox">
 		<div class="mdc-switch__background">
@@ -22,7 +19,7 @@ require_once("init.php");
 		</div>
 	</div>
 	<i class="material-icons">account_box</i>
-	<script src="assets/styles/material-components-web.min.js"></script>
+	<script src="theme/styles/material-components-web.min.js"></script>
 	<script>mdc.autoInit()</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 * @copyright 2018 Danil Dumkin
 */
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Translate.php');
+require_once(PATH_CLASSES . 'Translate.php');
 
 class OoTemplate {
 	private $content = "";

@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="html/css/font-awesome.css" type="text/css">
 	<link rel="stylesheet" href="html/css/topBar.min.css" type="text/css">
 	<link rel="stylesheet" href="html/css/mainMenu.min.css" type="text/css">
+	<link rel="stylesheet" href="../theme/styles/material-icons.css">
 </head>
 <body>
 	<div id="topBar">
@@ -21,7 +22,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="http://iz-article.ru">
+				<a href="http://test">
 					<i class="fa fa-bookmark fa-lg"></i>
 					<span>Сайт</span>
 				</a>
@@ -60,8 +61,7 @@
 				</a>
 				<div id="submenu">
 					<ul>
-						<li><a href="index.php?page=user_edit&user=<?php echo($auth->loginGet()); ?>">Поменять пароль</a></li>
-						<li><a href="index.php?page=user_profile">Изменить данные</a></li>
+						<li><a href="index.php?page=users-edit&user=<?php echo($auth->loginGet()); ?>">Поменять пароль</a></li>
 						<li><a href="index.php?do=logout">Выйти</a></li>
 					</ul>
 				</div>
@@ -77,14 +77,14 @@
 				</a>
 			</li>
 			<li>
-				<a href="index.php?page=users">
+				<a href="index.php?page=users-list">
 					<i class="fa fa-user"></i>
 					<span>Пользователи</span>
 				</a>
 				<div id="submenu">
 					<ul>
-						<li><a href="index.php?page=users">Список</a></li>
-						<li><a href="index.php?page=user_edit">Добавить</a></li>
+						<li><a href="index.php?page=users-list">Список</a></li>
+						<li><a href="index.php?page=users-new">Создать</a></li>
 					</ul>
 				</div>
 			</li>
@@ -102,55 +102,41 @@
 				</div>
 			</li>
 			<li>
-				<a href="index.php?page=blog_list">
-					<a href="index.php">
-						<i class="fa fa-hashtag"></i>
-						<span>Блог</span>
-					</a>
-					<div id="submenu">
-						<ul>
-							<li><a href="index.php?page=blog_list">Список</a></li>
-							<li><a href="index.php?page=blog_edit">Добавить</a></li>
-							<li><a href="index.php?page=blog_lock_list">Закрытые</a></li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<a href="index.php?page=main">
-						<i class="fa fa-picture-o"></i>
-						<span>Медиа-ресурсы</span>
-					</a>
-					<div id="submenu">
-						<ul>
-							<li><a href="index.php?page=image_list">Картинки</a></li>
-							<li><a href="index.php?page=main">Видео</a></li>
-							<li><a href="index.php?page=main">Аудио</a></li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<a href="index.php?page=catalog_list">
-						<i class="fa fa-filter"></i>
-						<span>Дерево каталогов</span>
-					</a>
-				</li>
-				<li>
-					<a href="index.php?page=html">
-						<i class="fa fa-code"></i>
-						<span>HTML редактор</span>
-					</a>
-				</li>
-				<hr>
-				<li>
-					<a href="index.php?page=help">
-						<i class="fa fa-info-circle"></i>
-						<span>Помощь</span>
-					</a>
-				</li>
-				<hr>
-				<li>
-					<a href="index.php?page=log">
-						<?php
+				<a href="index.php?page=main">
+					<i class="fa fa-picture-o"></i>
+					<span>Медиа-ресурсы</span>
+				</a>
+				<div id="submenu">
+					<ul>
+						<li><a href="index.php?page=image_list">Картинки</a></li>
+						<li><a href="index.php?page=main">Видео</a></li>
+						<li><a href="index.php?page=main">Аудио</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<a href="index.php?page=catalog_list">
+					<i class="fa fa-filter"></i>
+					<span>Дерево каталогов</span>
+				</a>
+			</li>
+			<li>
+				<a href="index.php?page=html">
+					<i class="fa fa-code"></i>
+					<span>HTML редактор</span>
+				</a>
+			</li>
+			<hr>
+			<li>
+				<a href="index.php?page=help">
+					<i class="fa fa-info-circle"></i>
+					<span>Помощь</span>
+				</a>
+			</li>
+			<hr>
+			<li>
+				<a href="index.php?page=log">
+					<?php
 				/*$log = file_get_contents('log.txt');
 				if ($log == '')*/
 					echo ('<i class="fa fa-check-circle"></i>');
@@ -182,7 +168,7 @@
 </div>
 <div id="container">
 	<?php
-/*
+
 $typemsg = @$_GET['typemsg'];
 if(isset($typemsg)) {
 	$msg = @$_GET['msg'];
@@ -197,8 +183,7 @@ if(isset($typemsg)) {
 			$info = '<div class="alert alert-info" role="alert">' . $msg . '</div>';
 			break;
 	}
+	echo $info;
 }
 
-echo $info;
-*/
 ?>

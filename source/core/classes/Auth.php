@@ -6,7 +6,7 @@
 * @copyright 2018 Danil Dumkin
 */
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Database.php');
+require_once(PATH_CLASSES . 'Database.php');
 
 class OoAuth {
 	private $_database;
@@ -102,7 +102,7 @@ class OoAuth {
 		return $result;
 	}
 
-	public function changePassword($login, $password) : bool {
+	public function changePassword($login, $password, $loginAuto = true) : bool {
 		if (!$this->check()) {
 			$this->error = "Token not select";
 			return false;
@@ -112,12 +112,6 @@ class OoAuth {
 		$login = $this->_database->stringSafe($login);
 		$salt = $this->saltGenerate();
 		$passwordSecure = $this->passwordSecure($password, $salt);
-
-		$result = $this->_database->execute("SELECT * FROM `{$prefix}users` WHERE `login` = '{$login}'");
-		if ($result->num_rows !== 0) {
-			$this->error = "User already exists";
-			return false;
-		}
 		
 		$result = $this->_database->execute("UPDATE `{$prefix}users` SET `password` = '{$passwordSecure}', `salt` = '{$salt}' WHERE `oo_users`.`login` = '{$login}';");
 
