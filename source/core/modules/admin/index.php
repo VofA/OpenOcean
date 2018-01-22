@@ -3,12 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Админ панель</title>
-	<link rel="stylesheet" href="html/libs/bootstrap/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="html/libs/bootstrap/css/bootstrap-theme.min.css" type="text/css">
-	<script src="html/js/jQuery-2.2.4.min.js"></script>
-	<script src="html/libs/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="html/css/style.css" type="text/css">
-	<link rel="stylesheet" href="html/css/font-awesome.css" type="text/css">
 	<link rel="stylesheet" href="html/css/topBar.min.css" type="text/css">
 	<link rel="stylesheet" href="html/css/mainMenu.min.css" type="text/css">
 	<link rel="stylesheet" href="../theme/styles/material-icons.css">
@@ -17,24 +12,24 @@
 	<div id="topBar">
 		<ul id="left">
 			<li>
-				<a href="https://new.vk.com/dumkindv">
+				<a href="">
 					<i class="fa fa-diamond fa-lg"></i>
 				</a>
 			</li>
 			<li>
-				<a href="http://test">
+				<a href="">
 					<i class="fa fa-bookmark fa-lg"></i>
 					<span>Сайт</span>
 				</a>
 			</li>
 			<li>
-				<a href="file-manager/">
+				<a href="">
 					<i class="fa fa-file fa-lg"></i>
 					<span>Файл-менеджер</span>
 				</a>
 			</li>		
 			<li>
-				<a href="#">
+				<a href="">
 					<i class="fa fa-line-chart fa-lg"></i>
 					<span>Статистика</span>
 				</a>
@@ -47,7 +42,7 @@
 				</div>
 			</li>
 			<li>
-				<a href="https://cp.sprinthost.ru/pma/index.php">
+				<a href="">
 					<i class="fa fa-database fa-lg"></i>
 					<span>База данных</span>
 				</a>
