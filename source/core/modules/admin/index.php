@@ -3,9 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Админ панель</title>
-	<link rel="stylesheet" href="html/css/style.css" type="text/css">
-	<link rel="stylesheet" href="html/css/topBar.min.css" type="text/css">
-	<link rel="stylesheet" href="html/css/mainMenu.min.css" type="text/css">
+	<link rel="stylesheet" href="../theme/styles/style_admin.css" type="text/css">
+	<link rel="stylesheet" href="../theme/styles/topBar.min_admin.css" type="text/css">
+	<link rel="stylesheet" href="../theme/styles/mainMenu.min_admin.css" type="text/css">
 	<link rel="stylesheet" href="../theme/styles/material-icons.css">
 </head>
 <body>
