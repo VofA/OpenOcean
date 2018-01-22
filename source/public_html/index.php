@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+
+require_once('../init.php');
+
+?><!DOCTYPE html>
 <html>
 <head>
 	<title>Material Components for the web</title>
