@@ -1,9 +1,9 @@
 <?php
 
-require_once("core/config.php");
+require_once("config.php");
 
 if (!OPEN_OCEAN_INSTALLED) {
-	header('Location: public_html/install/');
+	header('Location: install/');
 	exit;
 }
 
@@ -25,6 +25,6 @@ OoDebug::print($data);
 OoDebug::print($_SERVER['REQUEST_URI']);
 OoDebug::print($url);
 
-//include($url);
+include($url);
 
 ?>

@@ -20,6 +20,8 @@ define('PATH_ROOT', __DIR__ . '/../'); {
 	}
 }
 
+define('URL_ROOT', '/OpenOcean/source/public_html/');
+
 define('DEBUG_ENABLE', false);
 
 define('DATABASE_HOST', 'localhost');

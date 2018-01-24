@@ -3,7 +3,7 @@ Options -Indexes
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ init.php [L,QSA]
+RewriteRule ^(.*)$ core/init.php [L,QSA]
 
 #AddDefaultCharset UTF-8
 

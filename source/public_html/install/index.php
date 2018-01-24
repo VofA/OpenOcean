@@ -7,7 +7,7 @@ if (OPEN_OCEAN_INSTALLED) {
 	exit;
 }
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Template.php');
+require_once(PATH_CLASSES . 'Template.php');
 
 $languagesAvailableJson = file_get_contents(PATH_INSTALL . 'languages/available.json');
 $languagesAvailable = (array) json_decode($languagesAvailableJson);

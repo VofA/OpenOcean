@@ -6,8 +6,8 @@ if (!isset($_POST["host"], $_POST["username"], $_POST["name"])) {
 
 require_once("../../core/config.php");
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Database.php');
-require_once(PATH_LIBRARIES . 'OpenOcean/Config.php');
+require_once(PATH_CLASSES . 'Database.php');
+require_once(PATH_CLASSES . 'Config.php');
 
 foreach ($_POST as $key => $value) {
 	if ($value === '') {
@@ -19,6 +19,8 @@ $port = $_POST["port"] ?? null;
 
 $config = new OoConfig();
 $config->load();
+
+$config->change('URL_ROOT', $_SERVER['REQUEST_URI']);
 
 $database = new OoDatabase();
 

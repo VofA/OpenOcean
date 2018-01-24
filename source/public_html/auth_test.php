@@ -1,6 +1,6 @@
 <?php
 
-require_once('../init.php');
+require_once('../core/config.php');
 
 require_once(PATH_CLASSES . 'Database.php');
 require_once(PATH_CLASSES . 'Auth.php');

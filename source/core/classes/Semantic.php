@@ -7,15 +7,30 @@
 */
 
 class OoSemantic {
-	public function prepare($path) {
-		$path = PATH_ROOT . "../.." . $path;
+	public function prepare($url) {
+		$url = $this->addIndex($url);
 
-		if (substr($path, -1) == '/') {
-			$path .= 'index.php';
+		$url = explode('?', $url)[0];
+
+		$url = str_replace(URL_ROOT, '', $url);
+
+		if ($url === 'install/index.php') {
+			return PATH_MODULES . 'install/init.php';
+		}
+		if ($url === 'admin/index.php') {
+			return PATH_MODULES . 'admin/init.php';
 		}
 
-		$path = explode('?', $path)[0];
+		$url = PATH_PUBLIC_HTML . $url;
 
-		return $path;
+		return $url;
+	}
+
+	public function addIndex($url) {
+		if (substr($url, -1) == '/') {
+			$url .= 'index.php';
+		}
+
+		return $url;
 	}
 }

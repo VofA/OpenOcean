@@ -1,7 +1,5 @@
 <?php
 
-require_once('../../init.php');
-
 require_once(PATH_CLASSES . 'Database.php');
 require_once(PATH_CLASSES . 'Auth.php');
 
@@ -17,7 +15,7 @@ if (isset($_GET['do']) and $_GET['do'] == 'login') {
 }
 
 if ($auth->check()) {
-	require_once(PATH_MODULES . 'admin/index.php');
+	require_once(PATH_MODULES . 'admin/menu.php');
 
 	$page = 'main';
 
