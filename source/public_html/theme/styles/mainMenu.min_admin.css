@@ -1,0 +1,15 @@
+#mainMenu{position:fixed;top:32px;height:100%;z-index:1;width:160px;background-color:#23282d;}
+#mainMenu ul{margin:12px 0px;list-style:none;}
+#mainMenu li{margin:0px 0px 5px 0px;}
+#mainMenu a{display:block;font-size:14px;font-weight:400;line-height:18px;padding:0;font-family:"Open Sans",sans-serif;text-decoration:none;height:34px;width:160px;color:#fff;}
+#mainMenu a:hover{background-color:#191e23;color:#00b9eb;}
+#mainMenu a .fa{color:#999;margin:5px 6px;font-size:1.5em;}
+#mainMenu ul li:hover{background-color:#191e23;color:#00b9eb;}
+#mainMenu ul li:hover .fa{color:#00b9eb;}
+#mainMenu ul li:hover a{color:#00b9eb;}
+#mainMenu #submenu{display:none;position:relative;top:-46px;}
+#mainMenu ul li:hover #submenu{display:block;}
+#mainMenu #submenu ul{position:absolute;background-color:#32373c;left:160px;padding:7px 0 4px;}
+#mainMenu #submenu li{float:none;height:27px;}
+#mainMenu #submenu a{font-size:12px;color:#b4b9be;padding:1px 2px 0px 15px;}
+#mainMenu #submenu a:hover{color:#00b9eb;background-color:#32373c;}

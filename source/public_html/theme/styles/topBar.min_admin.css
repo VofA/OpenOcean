@@ -1,0 +1,16 @@
+#topBar{background:#23282d;height:32px;color:#ccc;width:100%;z-index:99999;position:fixed;font:400 13px/32px "Open Sans",sans-serif;}
+#topBar ul{list-style:none;}
+#topBar #left li{float:left;}
+#topBar #right li{float:right;direction:rtl;}
+#topBar a{color:#eee;padding:0 8px;display:block;text-decoration:none;}
+#topBar a:hover{color:#00b9eb;background:#32373c;}
+#topBar a .fa{color:#999;margin-right:6px;}
+#topBar ul li:hover{background:#32373c;color:#00b9eb;}
+#topBar ul li:hover .fa{color:#00b9eb;}
+#topBar ul li:hover a{color:#00b9eb;}
+#topBar #submenu{display:none;}
+#topBar ul li:hover #submenu {display:block;}
+#topBar #submenu ul{position:absolute;background:#32373c;}
+#topBar #submenu li{float:none;}
+#topBar #submenu a{color:#b4b9be;}
+#topBar #submenu a:hover{color:#00b9eb;}

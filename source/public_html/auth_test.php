@@ -1,9 +1,9 @@
 <?php
 
-require_once("../core/init.php");
+require_once('../core/config.php');
 
-require_once(PATH_LIBRARIES . 'OpenOcean/Database.php');
-require_once(PATH_LIBRARIES . 'OpenOcean/Auth.php');
+require_once(PATH_CLASSES . 'Database.php');
+require_once(PATH_CLASSES . 'Auth.php');
 
 $database = new OoDatabase();
 $database->connect();
@@ -18,6 +18,9 @@ if (isset($_GET['type']) and $_GET['type'] == 'login') {
 	$result = $auth->logout();
 } else if (isset($_GET['type']) and $_GET['type'] == 'check') {
 	$result = $auth->check();
+} else if (isset($_GET['type']) and $_GET['type'] == 'change') {
+	$auth->check();
+	$result = $auth->changePassword($auth->loginGet(), $_GET['password']);
 }
 
 if (!$result) {
@@ -57,6 +60,14 @@ $ip = $_SERVER['REMOTE_ADDR'];
 		<h1>check</h1>
 		<form action="auth_test.php" method="get">
 			<input type="hidden" name="type" value="check">
+			<input type="submit">
+		</form>
+	</div>
+	<div>
+		<h1>change password</h1>
+		<form action="auth_test.php" method="get">
+			<input type="text" name="password" placeholder="password">
+			<input type="hidden" name="type" value="change">
 			<input type="submit">
 		</form>
 	</div>
