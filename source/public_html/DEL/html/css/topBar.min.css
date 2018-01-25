@@ -1,5 +1,0 @@
-#topBar{background-color:#FFFFFF;border-bottom:1px solid #BCC3CE;top:0;position:fixed;width:100%;font-family:arial,sans-serif;padding:8px;font:normal 12px/normal Arial,sans-serif;z-index:100}
-#topBar a{color:#077FCC;text-decoration:none;padding:0 0 0 20px}
-#topBar a:hover{text-decoration:underline}
-#topBar #current{color:#000000;text-decoration:none}
-#topBar #current:hover{text-decoration:underline}

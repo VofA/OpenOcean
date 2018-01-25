@@ -1,6 +1,0 @@
-AddDefaultCharset UTF-8
-
-RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^/?([0-9]+)/?$ index.php?id=$0
