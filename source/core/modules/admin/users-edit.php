@@ -15,7 +15,7 @@ if (isset($_GET['submit']) AND $_GET['submit'] == 'yes') {
 
 ?>
 <h1>Редактирование пользователя <?php echo($user); ?></h1>
-<form method='POST' action='index.php?page=users-edit&user=<?php echo($user); ?>&submit=yes'>
+<form method='POST' action='admin?page=users-edit&user=<?php echo($user); ?>&submit=yes'>
 	<p>
 		<label for="login">Логин:</label>
 		<input class="form-control" type="text" name="login" id="login" value="<?php echo($user); ?>">

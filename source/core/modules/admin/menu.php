@@ -3,16 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title>Админ панель</title>
-	<link rel="stylesheet" href="../theme/styles/style_admin.css" type="text/css">
-	<link rel="stylesheet" href="../theme/styles/topBar.min_admin.css" type="text/css">
-	<link rel="stylesheet" href="../theme/styles/mainMenu.min_admin.css" type="text/css">
-	<link rel="stylesheet" href="../theme/styles/material-icons.css">
+	<link rel="stylesheet" href="theme/styles/style_admin.css" type="text/css">
+	<link rel="stylesheet" href="theme/styles/topBar.min_admin.css" type="text/css">
+	<link rel="stylesheet" href="theme/styles/mainMenu.min_admin.css" type="text/css">
+	<link rel="stylesheet" href="theme/styles/material-icons.css">
 </head>
 <body>
 	<div id="topBar">
 		<ul id="left">
 			<li>
-				<a href="index.php">
+				<a href="admin">
 					<i class="material-icons">home</i>
 				</a>
 				<div id="submenu">
@@ -32,14 +32,14 @@
 		</ul>
 		<ul id="right">
 			<li>
-				<a href="index.php?page=user_profile">
+				<a href="admin?page=user_profile">
 					<i class="material-icons">account_circle</i>
 					<span><?php echo($auth->loginGet()); ?></span>
 				</a>
 				<div id="submenu">
 					<ul>
-						<li><a href="index.php?page=users-edit&user=<?php echo($auth->loginGet()); ?>">Поменять пароль</a></li>
-						<li><a href="index.php?do=logout">Выйти</a></li>
+						<li><a href="admin?page=users-edit&user=<?php echo($auth->loginGet()); ?>">Поменять пароль</a></li>
+						<li><a href="admin?do=logout">Выйти</a></li>
 					</ul>
 				</div>
 			</li>
@@ -48,20 +48,20 @@
 	<div id="mainMenu">
 		<ul>
 			<li>
-				<a href="index.php">
+				<a href="admin">
 					<i class="material-icons">home</i>
 					<span>Главная</span>
 				</a>
 			</li>
 			<li>
-				<a href="index.php?page=users-list">
+				<a href="admin?page=users-list">
 					<i class="material-icons">account_circle</i>
 					<span>Пользователи</span>
 				</a>
 				<div id="submenu">
 					<ul>
-						<li><a href="index.php?page=users-list">Список</a></li>
-						<li><a href="index.php?page=users-new">Создать</a></li>
+						<li><a href="admin?page=users-list">Список</a></li>
+						<li><a href="admin?page=users-new">Создать</a></li>
 					</ul>
 				</div>
 			</li>

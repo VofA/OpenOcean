@@ -8,7 +8,7 @@
 
 class OoSemantic {
 	public function prepare($url) {
-		$url = $this->addIndex($url);
+		//$url = $this->addIndex($url);
 
 		$url = explode('?', $url)[0];
 
@@ -17,7 +17,7 @@ class OoSemantic {
 		if ($url === 'install/index.php') {
 			return PATH_MODULES . 'install/init.php';
 		}
-		if ($url === 'admin/index.php') {
+		if ($url === 'admin') {
 			return PATH_MODULES . 'admin/init.php';
 		}
 

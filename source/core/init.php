@@ -20,9 +20,6 @@ $data = $telemetry->getIpData();
 $semantic = new OoSemantic();
 $url = $semantic->prepare($_SERVER['REQUEST_URI']);
 
-OoDebug::print($data);
-
-OoDebug::print($_SERVER['REQUEST_URI']);
 OoDebug::print($url);
 
 include($url);

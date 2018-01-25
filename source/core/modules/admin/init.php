@@ -40,14 +40,13 @@ if ($auth->check()) {
 <head>
 	<meta charset="utf-8">
 	<title>Авторизация</title>
-	<link rel='stylesheet' type='text/css' href='html/css/auth.css'>
 </head>
 <body>
 	<div id='auth'>
 		<div class='form-auth'>
 			<h1>Авторизация на сайте</h1>
 			<fieldset>
-				<form method='POST' action='index.php?do=login'>
+				<form method='POST' action='admin?do=login'>
 					<input type='text' required placeholder='Логин' name="login">
 					<input style='border-top: 0px;' type='password' required placeholder='Пароль' name="password">
 					<input type='submit' value='ВОЙТИ'>
