@@ -52,7 +52,7 @@ $(function() {
 		var languageSelected = $('#ls-s').find('option:selected').val();
 
 		if (languageSelected !== languageDefault) {
-			languageLoad('languages/' + languageSelected + '.json');
+			languageLoad('theme/languages/' + languageSelected + '.json');
 		}
 
 		$('.collapsible').collapsible('open', 1);
@@ -96,7 +96,7 @@ $(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "databaseSetup.php",
+			url: "install?module=database",
 			data: $("#ds-f").serialize(),
 			success: function(data) {
 				if (data === "true") {
@@ -164,7 +164,7 @@ $(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "accountSetup.php",
+			url: "install?module=account",
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -172,7 +172,7 @@ $(function() {
 				if (data === "true") {
 					$('.collapsible').collapsible('close', 3);
 					stateChange('as', 'done');
-					window.location.href = '..';
+					window.location.href = 'index.php';
 				} else {
 					stateChange('as', 'error');
 				}

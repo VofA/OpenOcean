@@ -15,9 +15,7 @@ define('PATH_ROOT', __DIR__ . '/../'); {
 	define('PATH_PLUGINS', PATH_ROOT . 'plugins/');
 	define('PATH_LOGS', PATH_ROOT . 'logs/');
 	define('PATH_THEMES', PATH_ROOT . 'themes/');
-	define('PATH_PUBLIC_HTML', PATH_ROOT . 'public_html/'); {
-		define('PATH_INSTALL', PATH_PUBLIC_HTML . 'install/');
-	}
+	define('PATH_PUBLIC_HTML', PATH_ROOT . 'public_html/');
 }
 
 define('URL_ROOT', '/OpenOcean/source/public_html/');

@@ -3,7 +3,7 @@
 require_once("config.php");
 
 if (!OPEN_OCEAN_INSTALLED) {
-	header('Location: install/');
+	require_once(PATH_MODULES . 'install/init.php');
 	exit;
 }
 

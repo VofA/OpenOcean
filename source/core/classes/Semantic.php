@@ -14,7 +14,7 @@ class OoSemantic {
 
 		$url = str_replace(URL_ROOT, '', $url);
 
-		if ($url === 'install/index.php') {
+		if ($url === 'install') {
 			return PATH_MODULES . 'install/init.php';
 		}
 		if ($url === 'admin') {

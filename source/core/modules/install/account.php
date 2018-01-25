@@ -4,8 +4,6 @@ if (!isset($_POST["login"], $_POST["email"], $_POST["password"])) {
 	exit("Insufficient data");
 }
 
-require_once("../../core/config.php");
-
 require_once(PATH_CLASSES . 'Image.php');
 require_once(PATH_CLASSES . 'Database.php');
 require_once(PATH_CLASSES . 'Auth.php');
@@ -43,10 +41,10 @@ if (!$image->errorCheck()) {
 	exit;
 }
 
-if (!is_dir(PATH_PUBLIC_HTML . 'assets/pictures/users/')) {
-	mkdir(PATH_PUBLIC_HTML . 'assets/pictures/users/');
+if (!is_dir(PATH_PUBLIC_HTML . 'theme/pictures/users/')) {
+	mkdir(PATH_PUBLIC_HTML . 'theme/pictures/users/');
 }
 
-$image->fileMove('assets/pictures/users/' . $_POST['login'] . ".png");
+$image->fileMove(PATH_PUBLIC_HTML . 'theme/pictures/users/' . $_POST['login'] . ".png");
 
 echo("true");
