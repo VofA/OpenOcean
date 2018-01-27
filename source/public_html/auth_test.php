@@ -27,9 +27,6 @@ if (!$result) {
 	$result = $auth->errorGet();
 }
 
-$ipLong = ip2long($_SERVER['REMOTE_ADDR']);
-$ip = $_SERVER['REMOTE_ADDR'];
-
 ?><!doctype html>
 <html lang="en">
 <head>

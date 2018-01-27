@@ -18,7 +18,11 @@ $port = $_POST["port"] ?? null;
 $config = new OoConfig();
 $config->load();
 
-$config->change('URL_ROOT', $_SERVER['REQUEST_URI']);
+$path = explode('/', $_SERVER['REQUEST_URI']);
+unset($path[count($path) - 1]);
+$path = implode('/', $path);
+$path .= '/';
+$config->change('URL_ROOT', $path);
 
 $database = new OoDatabase();
 

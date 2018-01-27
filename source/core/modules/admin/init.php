@@ -10,8 +10,12 @@ $auth = new OoAuth($database);
 
 if (isset($_GET['do']) and $_GET['do'] == 'login') {
 	$auth->login($_POST['login'], $_POST['password']);
+	header("Location: admin");
+	exit;
 } elseif (isset($_GET['do']) and $_GET['do'] == 'logout') {
 	$auth->logout();
+	header("Location: admin");
+	exit;
 }
 
 if ($auth->check()) {
@@ -32,7 +36,7 @@ if ($auth->check()) {
 
 	exit;
 } else {
-	$message = '<div id="message" style="background-color:red">✖ ' . $auth->errorGet() . '</div>';
+	$message = '<span style="background-color:red">' . $auth->errorGet() . '</span>';
 }
 
 ?><!DOCTYPE html>
@@ -42,19 +46,12 @@ if ($auth->check()) {
 	<title>Авторизация</title>
 </head>
 <body>
-	<div id='auth'>
-		<div class='form-auth'>
-			<h1>Авторизация на сайте</h1>
-			<fieldset>
-				<form method='POST' action='admin?do=login'>
-					<input type='text' required placeholder='Логин' name="login">
-					<input style='border-top: 0px;' type='password' required placeholder='Пароль' name="password">
-					<input type='submit' value='ВОЙТИ'>
-					<?php echo($message); ?>
-					<a href='#' style='float:left;'>Забыли пароль?</a><a href='#' style='float:right;'>Регистрация</a>
-				</form>
-			</fieldset>
-		</div>
-	</div>
+	<h1>Авторизация на сайте</h1>
+	<form method='POST' action='admin?do=login'>
+		<input type='text' required placeholder='Логин' name="login">
+		<input type='password' required placeholder='Пароль' name="password">
+		<input type='submit' value='Войти'>
+		<?php echo($message); ?>
+	</form>
 </body>
 </html>

@@ -8,8 +8,6 @@
 
 class OoSemantic {
 	public function prepare($url) {
-		//$url = $this->addIndex($url);
-
 		$url = explode('?', $url)[0];
 
 		$url = str_replace(URL_ROOT, '', $url);
