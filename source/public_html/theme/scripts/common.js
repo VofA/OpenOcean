@@ -1,16 +1,16 @@
 function stateChange(id, status) {
-    var element = '#' + id + ' .collapsible-done';
+    var element = "#" + id + " .collapsible-done";
 
-    $(element + ' .progress').addClass('hide');
-    $(element + ' .red-text').addClass('hide');
-    $(element + ' .green-text').addClass('hide');
+    $(element + " .progress").addClass("hide");
+    $(element + " .red-text").addClass("hide");
+    $(element + " .green-text").addClass("hide");
 
-    if (status === 'load') {
-        $(element + ' .progress').removeClass('hide');
-    } else if (status === 'done') {
-        $(element + ' .green-text').removeClass('hide');
-    } else if (status === 'error') {
-        $(element + ' .red-text').removeClass('hide');
+    if (status === "load") {
+        $(element + " .progress").removeClass("hide");
+    } else if (status === "done") {
+        $(element + " .green-text").removeClass("hide");
+    } else if (status === "error") {
+        $(element + " .red-text").removeClass("hide");
     }
 }
 
@@ -18,7 +18,7 @@ function languageLoad(filePath) {
 	$.getJSON(filePath, function(data) {
 		for (var key in data) {
             if (data.hasOwnProperty(key)) {
-                $('#' + key).text(data[key]);
+                $("#" + key).text(data[key]);
             }
 
 		}
@@ -31,7 +31,7 @@ function readURL(input) {
 		var reader = new FileReader();
 
 		reader.onload = function (e) {
-			$('#as-f-i').attr('src', e.target.result);
+			$("#as-f-i").attr("src", e.target.result);
 		};
 
 		reader.readAsDataURL(input.files[0]);
@@ -39,51 +39,51 @@ function readURL(input) {
 }
 
 $(function() {
-	$('.collapsible').unbind('click');
-	$('select').material_select();
+	$(".collapsible").unbind("click");
+	$("select").material_select();
 
 	var languageDefault = $("#ls-s").find("option:selected").val();
 
-	// Step 'Language select'
-	// Click button 'Next'
+	// Step "Language select"
+	// Click button "Next"
 	$("#ls-n").click(function() {
-		stateChange('ls', 'load');
+		stateChange("ls", "load");
 
-		var languageSelected = $('#ls-s').find('option:selected').val();
+		var languageSelected = $("#ls-s").find("option:selected").val();
 
 		if (languageSelected !== languageDefault) {
-			languageLoad('theme/languages/' + languageSelected + '.json');
+			languageLoad("theme/languages/" + languageSelected + ".json");
 		}
 
-		$('.collapsible').collapsible('open', 1);
-		stateChange('ls', 'done');
+		$(".collapsible").collapsible("open", 1);
+		stateChange("ls", "done");
 	});
 
-	// Step 'Welcome'
-	// Click button 'Next'
+	// Step "Welcome"
+	// Click button "Next"
 	$("#w-n").click(function() {
-		stateChange('w', 'load');
+		stateChange("w", "load");
 
-		$('.collapsible').collapsible('open', 2);
+		$(".collapsible").collapsible("open", 2);
 
-		stateChange('w', 'done');
+		stateChange("w", "done");
 	});
 
-	// Step 'Database setup'
-	// Click checkbox 'Port enabled/disabled'
-	$('#ds-f-p-cb').click(function() {
-		$('#ds-f-port').prop('disabled', !$('#ds-f-p-cb').is(':checked'));
+	// Step "Database setup"
+	// Click checkbox "Port enabled/disabled"
+	$("#ds-f-p-cb").click(function() {
+		$("#ds-f-port").prop("disabled", !$("#ds-f-p-cb").is(":checked"));
 	});
-	// Click button 'Next'
+	// Click button "Next"
 	$("#ds-n").click(function() {
-		stateChange('ds', 'load');
+		stateChange("ds", "load");
 
 		var proceed = true;
 
 		$("#ds-f").find("input:required").toArray().forEach(function(item) {
-			if ($(item).val() === '') {
+			if ($(item).val() === "") {
 				$(item).addClass("invalid");
-				stateChange('ds', 'error');
+				stateChange("ds", "error");
 				proceed = false;
 			} else {
 				$(item).removeClass("invalid");
@@ -100,19 +100,19 @@ $(function() {
 			data: $("#ds-f").serialize(),
 			success: function(data) {
 				if (data === "true") {
-					$('.collapsible').collapsible('open', 3);
-					stateChange('ds', 'done');
+					$(".collapsible").collapsible("open", 3);
+					stateChange("ds", "done");
 				} else {
-					stateChange('ds', 'error');
+					stateChange("ds", "error");
 				}
 			}
 		})
 	});
 
-	// Step 'Account setup'
-	// Click button 'Select account photo'
-	$('.overlay').on('click', function() {
-		$('#as-f-f').trigger('click');
+	// Step "Account setup"
+	// Click button "Select account photo"
+	$(".overlay").on("click", function() {
+		$("#as-f-f").trigger("click");
 	});
 	// Change selected account photo
 	$("#as-f-f").change(function() {
@@ -126,30 +126,30 @@ $(function() {
 	$("#as-f-password").on("change paste keyup", function() {
 		$("#as-f-password-show").val($(this).val());
 	});
-	// Click button 'Password show/hide'
-	$('#as-f-p-v').click(function() {
+	// Click button "Password show/hide"
+	$("#as-f-p-v").click(function() {
 		var status = $(this).text();
 
-		$(this).text(status === 'visibility' ? 'visibility_off' : 'visibility');
+		$(this).text(status === "visibility" ? "visibility_off" : "visibility");
 
-		if (status === 'visibility') {
-			$('#as-f-password-show').removeClass('hide');
-			$('#as-f-password').addClass('hide');
-			$('#as-f-p').attr('for', 'as-f-password-show')
+		if (status === "visibility") {
+			$("#as-f-password-show").removeClass("hide");
+			$("#as-f-password").addClass("hide");
+			$("#as-f-p").attr("for", "as-f-password-show");
 		} else {
-			$('#as-f-password-show').addClass('hide');
-			$('#as-f-password').removeClass('hide');
-			$('#as-f-p').attr('for', 'as-f-password')
+			$("#as-f-password-show").addClass("hide");
+			$("#as-f-password").removeClass("hide");
+			$("#as-f-p").attr("for", "as-f-password")
 		}
 	});
-	// Click button 'Finish'
-	$('#as-n').on('click', function() {
+	// Click button "Finish"
+	$("#as-n").on("click", function() {
 		var proceed = true;
 
 		$("#as-f").find("input:required").toArray().forEach(function(item) {
-			if ($(item).val() === '') {
+			if ($(item).val() === "") {
 				$(item).addClass("invalid");
-				stateChange('as', 'error');
+				stateChange("as", "error");
 				proceed = false;
 			} else {
 				$(item).removeClass("invalid");
@@ -170,11 +170,11 @@ $(function() {
 			data: formData,
 			success: function(data) {
 				if (data === "true") {
-					$('.collapsible').collapsible('close', 3);
-					stateChange('as', 'done');
-					window.location.href = 'index.php';
+					$(".collapsible").collapsible("close", 3);
+					stateChange("as", "done");
+					window.location.href = "index.php";
 				} else {
-					stateChange('as', 'error');
+					stateChange("as", "error");
 				}
 			}
 		});
