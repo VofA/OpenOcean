@@ -98,7 +98,7 @@ $(function() {
 			type: "POST",
 			url: "install?module=database",
 			data: $("#ds-f").serialize(),
-			success: function(data) {
+			success(data) {
 				if (data === "true") {
 					$(".collapsible").collapsible("open", 3);
 					stateChange("ds", "done");
@@ -106,7 +106,7 @@ $(function() {
 					stateChange("ds", "error");
 				}
 			}
-		})
+		});
 	});
 
 	// Step "Account setup"
@@ -139,7 +139,7 @@ $(function() {
 		} else {
 			$("#as-f-password-show").addClass("hide");
 			$("#as-f-password").removeClass("hide");
-			$("#as-f-p").attr("for", "as-f-password")
+			$("#as-f-p").attr("for", "as-f-password");
 		}
 	});
 	// Click button "Finish"

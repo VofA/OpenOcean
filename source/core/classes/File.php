@@ -34,11 +34,11 @@ class OoFile {
 
 		if ($this->error) {
 			return false;
-		} else {
-			if ($this->fileSize > $this->maxSize) {
-				$this->error = UPLOAD_ERR_FORM_SIZE;
-				return false;
-			}
+		}
+
+		if ($this->fileSize > $this->maxSize) {
+			$this->error = UPLOAD_ERR_FORM_SIZE;
+			return false;
 		}
 
 		return true;
