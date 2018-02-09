@@ -67,6 +67,28 @@ class OoAuth {
 		return $this->login;
 	}
 
+	public function loginValid(string $login) : bool {
+		$length = strlen($login);
+
+		if ($length < 4 || $length > 64 ||
+			!preg_match('~\A[A-Za-z0-9]+\z~', $login)
+		) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public function passwordValid(string $password) : bool {
+		$length = strlen($password);
+
+		if ($length < 8) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public function emailGet() : string {
 		return $this->email;
 	}
@@ -78,6 +100,16 @@ class OoAuth {
 	public function register($login, $password, $email, $loginAuto = true) : bool {
 		if (!$this->_database->connected()) {
 			$this->error = "Connect error";
+			return false;
+		}
+
+		if (!$this->loginValid($login)) {
+			$this->error = "Login invalid";
+			return false;
+		}
+
+		if (!$this->passwordValid($password)) {
+			$this->error = "Password invalid";
 			return false;
 		}
 

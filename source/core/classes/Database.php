@@ -7,6 +7,7 @@
 */
 
 require_once(PATH_CLASSES . 'Log.php');
+require_once(PATH_CLASSES . 'Security.php');
 
 class OoDatabase extends OoLog {
 	public function __construct() {
@@ -27,6 +28,8 @@ class OoDatabase extends OoLog {
 			return false;
 		}
 
+		$this->charsetSelect();
+
 		$this->_connected = true;
 		return true;
 	}
@@ -38,6 +41,8 @@ class OoDatabase extends OoLog {
 			$this->write($this->_handler->connect_error);
 			return false;
 		}
+
+		$this->charsetSelect();
 
 		$this->_connected = true;
 		return true;
@@ -81,12 +86,12 @@ class OoDatabase extends OoLog {
 	}
 
 	public function stringSafe($string) {
-		if (!$this->_connected) {
-			$this->write("stringSafe: connection not established");
-			return false;
-		}
+		if (!$this->_connected) { 
+			$this->write("stringSafe: connection not established"); 
+			return false; 
+		} 
 
-		return $this->_handler->real_escape_string($string);
+		return $this->_handler->real_escape_string($string); 
 	}
 
 	public function associativeArrayGet($query) {

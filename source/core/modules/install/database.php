@@ -1,19 +1,38 @@
 <?php
 
-if (!isset($_POST["host"], $_POST["username"], $_POST["name"])) {
-	exit("Insufficient data");
-}
-
 require_once(PATH_CLASSES . 'Database.php');
 require_once(PATH_CLASSES . 'Config.php');
 
-foreach ($_POST as $key => $value) {
+$data['host']           = $_POST["host"]           ?? null;
+$data['username']       = $_POST["username"]       ?? null;
+$data['password']       = $_POST["password"]       ?? null;
+$data['name']           = $_POST["name"]           ?? null;
+$data['prefix']         = $_POST["prefix"]         ?? null;
+$data['port']           = $_POST["port"]           ?? null;
+$data['createDatabase'] = $_POST["createDatabase"] ?? null;
+
+foreach ($data as $key => $value) {
 	if ($value === '') {
-		$_POST[$key] = null;
+		$data[$key] = null;
 	}
 }
 
-$port = $_POST["port"] ?? null;
+$database = new OoDatabase();
+
+$result = $database->connectCustom(
+	$data['host'],
+	$data['username'],
+	$data['password'],
+	$data['port']
+);
+
+if (!$result) {
+	$data = array(
+		'status' => false,
+		'error' => 'Connection error'
+	);
+	exit(json_encode($data));
+}
 
 $config = new OoConfig();
 $config->load();
@@ -22,38 +41,30 @@ $path = explode('/', $_SERVER['REQUEST_URI']);
 unset($path[count($path) - 1]);
 $path = implode('/', $path);
 $path .= '/';
-$config->change('URL_ROOT', $path);
 
-$database = new OoDatabase();
-
-$result = $database->connectCustom($_POST["host"], $_POST["username"], $_POST["password"], $port);
-if (!$result) {
-	echo('false connect error');
-	exit;
-}
-
-$config->change('DATABASE_HOST', $_POST["host"]);
-$config->change('DATABASE_USERNAME', $_POST["username"]);
-$config->change('DATABASE_PASSWORD', $_POST["password"]);
-$config->change('DATABASE_PORT', $port);
+$config->change('URL_ROOT',          $path);
+$config->change('DATABASE_HOST',     $data['host']);
+$config->change('DATABASE_USERNAME', $data['username']);
+$config->change('DATABASE_PASSWORD', $data['password']);
+$config->change('DATABASE_PORT',     $data['port']);
 $config->save();
 
-if (isset($_POST["createDatabase"])) {
-	$database->databaseCreate($_POST["name"]);
+if ($data['createDatabase']) {
+	$database->databaseCreate($data['name']);
 }
 
-$database->databaseSet($_POST["name"]);
+$result = $database->databaseSet($data['name']);
 
-if (!$database->databaseCheck($_POST["name"])) {
-	echo('false name error');
-	exit;
+if (!$result) {
+	$data = array(
+		'status' => false,
+		'error' => 'Database does not exist'
+	);
+	exit(json_encode($data));
 }
 
-$prefix = $database->stringSafe($_POST["prefix"]);
-$name = $database->stringSafe($_POST["name"]);
-
-$config->change('DATABASE_PREFIX', $prefix);
-$config->change('DATABASE_NAME', $name);
+$config->change('DATABASE_PREFIX', $data['prefix']);
+$config->change('DATABASE_NAME', $data['name']);
 $config->save();
 
 $columns = array(
@@ -67,13 +78,20 @@ $columns = array(
 	"`salt` VARCHAR(128)",
 	"PRIMARY KEY (`id`)",
 	"INDEX (`login`)",
-	"INDEX (`email`)",
+	"INDEX (`email`)"
 );
 
-$result = $database->tableCreate($name, $prefix . 'users', $columns);
+$result = $database->tableCreate($data['name'], $data['prefix'] . 'users', $columns);
+
 if (!$result) {
-	echo('false table create error');
-	exit;
+	$data = array(
+		'status' => false,
+		'error' => 'Table create error'
+	);
+	exit(json_encode($data));
 }
 
-echo('true');
+$data = array(
+	'status' => true
+);
+exit(json_encode($data));

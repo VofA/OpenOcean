@@ -99,11 +99,14 @@ $(function() {
 			url: "install?module=database",
 			data: $("#ds-f").serialize(),
 			success(data) {
-				if (data === "true") {
+				response = JSON.parse(data);
+
+				if (response.status === true) {
 					$(".collapsible").collapsible("open", 3);
 					stateChange("ds", "done");
 				} else {
 					stateChange("ds", "error");
+					alert(response.error);
 				}
 			}
 		});
@@ -169,12 +172,15 @@ $(function() {
 			contentType: false,
 			data: formData,
 			success: function(data) {
-				if (data === "true") {
+				response = JSON.parse(data);
+
+				if (response.status === true) {
 					$(".collapsible").collapsible("close", 3);
 					stateChange("as", "done");
 					window.location.href = "index.php";
 				} else {
 					stateChange("as", "error");
+					alert(response.error);
 				}
 			}
 		});

@@ -23,6 +23,12 @@ class OoDebug {
 			echo '</pre>';
 		}
 	}
+
+	public static function showErrors() {
+		if (DEBUG_ENABLE) {
+			error_reporting(E_ALL);
+		}
+	}
 }
 
 ?>

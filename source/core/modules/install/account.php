@@ -1,32 +1,36 @@
 <?php
 
-if (!isset($_POST["login"], $_POST["email"], $_POST["password"])) {
-	exit("Insufficient data");
-}
-
 require_once(PATH_CLASSES . 'Image.php');
 require_once(PATH_CLASSES . 'Database.php');
 require_once(PATH_CLASSES . 'Auth.php');
 require_once(PATH_CLASSES . 'Config.php');
 
+$data['login']    = $_POST["login"]    ?? '';
+$data['password'] = $_POST["password"] ?? '';
+$data['email']    = $_POST["email"]    ?? '';
+
 $database = new OoDatabase();
 
 $result = $database->connect();
-if (!$result) {
-	echo('false connect error');
-	exit;
-}
 
-$login = urldecode($_POST["login"]);
-$email = urldecode($_POST["email"]);
-$password = urldecode($_POST["password"]);
+if (!$result) {
+	$data = array(
+		'status' => false,
+		'error' => 'Database connection error'
+	);
+	exit(json_encode($data));
+}
 
 $user = new OoAuth($database);
 
-$result = $user->register($login, $password, $email);
+$result = $user->register($data['login'], $data['password'], $data['email']);
+
 if (!$result) {
-	echo($user->errorGet());
-	exit;
+	$data = array(
+		'status' => false,
+		'error' => $user->errorGet()
+	);
+	exit(json_encode($data));
 }
 
 $config = new OoConfig();
@@ -34,17 +38,23 @@ $config->load();
 $config->change('OPEN_OCEAN_INSTALLED', true);
 $config->save();
 
-$image = new OoImage($_FILES['photo']);
+// $image = new OoImage($_FILES['photo']);
 
-if (!$image->errorCheck()) {
-	echo($image->errorGet() == 'File not select' ? 'true' : 'false');
-	exit;
-}
+// if (!$image->errorCheck()) {
+// 	$data = array(
+// 		'status' => false,
+// 		'error' => $image->errorGet() /*== 'File not select' ? 'true' : 'false'*/
+// 	);
+// 	exit(json_encode($data));
+// }
 
-if (!is_dir(PATH_PUBLIC_HTML . 'theme/pictures/users/')) {
-	mkdir(PATH_PUBLIC_HTML . 'theme/pictures/users/');
-}
+// if (!is_dir(PATH_PUBLIC_HTML . 'theme/pictures/users/')) {
+// 	mkdir(PATH_PUBLIC_HTML . 'theme/pictures/users/');
+// }
 
-$image->fileMove(PATH_PUBLIC_HTML . 'theme/pictures/users/' . $_POST['login'] . ".png");
+// $image->fileMove(PATH_PUBLIC_HTML . 'theme/pictures/users/' . $data['login'] . ".png");
 
-echo("true");
+$data = array(
+	'status' => true
+);
+exit(json_encode($data));
